@@ -9,8 +9,14 @@
 namespace frontend\core\base;
 
 use common\core\base\Controller;
+use frontend\core\filters\UserFilters;
 
 class BaseController extends Controller
 {
-
+    public function behaviors()
+    {
+        return [
+            'class'=>UserFilters::className(),
+        ];
+    }
 }

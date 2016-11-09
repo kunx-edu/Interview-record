@@ -1,35 +1,27 @@
 <?php
-
 namespace common\helper;
-
 use Yii;
-use common\helper\ConstHelper;
 
+/**
+ * 帮助类.
+ * Class InfoHelper
+ * @package common\helper
+ */
 class Helper {
 
-    public static function getService($serviceName)
+    /**
+     * 使用Helper类获取session的方法.
+     */
+    public static function getSession($sesion)
     {
-        return Yii::$container->get($serviceName.'Service');
+        return Yii::$app->session->get($sesion);
     }
 
     /**
-     * 判断是否是手机号.
-     * @param $str
-     * @auth houzhongjian.
+     * 使用Helper类跳转的方法.
      */
-    public static function isMobile($str)
+    public static function redirect($url)
     {
-        return preg_match(ConstHelper::MOBILE_REGEX, $str);
-    }
-
-    //判断是否为邮箱.
-    public static function isEmail($str)
-    {
-        return preg_match(ConstHelper::EMAIL_REGEX, $str);
-    }
-
-    public static function password($password)
-    {
-        return preg_match(ConstHelper::USER_PASSWORD_REGEX, $password);
+        header("Location:".$url);
     }
 }

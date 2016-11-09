@@ -1,7 +1,7 @@
 <?php
 namespace frontend\core\filters;
 
-use common\helper\InfoHelper;
+use common\helper\Helper;
 use yii\base\ActionFilter;
 use Yii;
 
@@ -10,16 +10,16 @@ use Yii;
  * Class UserFilter
  * @package admin\core\filters
  */
-class UserFilter extends ActionFilter
+class UserFilters extends ActionFilter
 {
 
     public function beforeAction($action)
     {
         //验证用户是否登录.
-        $session = InfoHelper::getSession('emp');
+        $session = Helper::getSession('student');
 
         if (empty($session)) {
-            return QipaHelper::redirect('?r=login');
+            return Helper::redirect('?r=login');
         }
 
         return parent::beforeAction($action);
