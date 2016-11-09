@@ -1,0 +1,58 @@
+<?php
+
+namespace business\userService\dao;
+
+use common\helper\ConstHelper;
+use Yii;
+
+class User extends \yii\db\ActiveRecord
+{
+    /**
+     * 验证帐号唯一性 包括 (是否被删除).
+     * 调用情况：
+     * 1.注册 UserRegisterForm有调用.
+     * @auth houzhongjian.
+     */
+    public function accountUnique($account)
+    {
+        $res = $this->find()->where(['account'=>$account, 'delete'=>ConstHelper::USER_NOT_DELETE])->one();
+        return $res;
+    }
+
+    /**
+     * 注册的方法.
+     * @param $userData => ['account','password'].
+     * @return mixed.
+     * @auth houzhongjian.
+     */
+    public function register($userData)
+    {
+//        $model = new User();
+        $this->setAttributes($userData);
+        $this->save();
+        $id = $this->getPrimaryKey();
+        return $id;
+    }
+
+    /**
+     * @inheritdoc
+     */
+//    public function rules()
+//    {
+//        [['account', 'password', 'username', 'delete'], 'required'];
+//    }
+    /**
+     * @inheritdoc
+     */
+//    public function attributeLabels()
+//    {
+//        return [
+//            'id' => 'ID',
+//            'username' => '昵称',
+//            'account' => '帐号',
+//            'delete' => '用户状态',
+//            'password' => '密码',
+//            'face' => '密码',
+//        ];
+//    }
+}
