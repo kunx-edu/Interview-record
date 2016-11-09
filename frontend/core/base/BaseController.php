@@ -13,8 +13,4 @@ use common\core\base\Controller;
 class BaseController extends Controller
 {
 
-    public function __construct()
-    {
-
-    }
 }

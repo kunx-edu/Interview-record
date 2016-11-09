@@ -9,13 +9,16 @@ use frontend\core\base\BaseController;
  * Class IndexController
  * @package frontend\controllers
  */
-class IndexController extends  BaseController
+class IndexController extends BaseController
 {
     /**
      * 显示选择学科的方法.
      */
     public function actionIndex()
     {
-
+//        $this->layout = "public";
+//        echo 123;
+//        return $this->render('index');
+        return $this->render('index');
     }
 }

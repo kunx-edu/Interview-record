@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -33,23 +30,21 @@ AppAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">源代码学生面试记录系统</a>
+            <span class="navbar-brand" style="font-weight: bold; font-family: '微软雅黑';">源代码学生面试记录系统</span>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">面试</a></li>
+                <li><a href="#">面试信息</a></li>
                 <li><a href="#">培训公司</a></li>
                 <li><a href="#">黑名单公司</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
     <div class="container">
         <?= $content ?>
 </div>
-
 <?php $this->endBody() ?>
 </body>
 </html>

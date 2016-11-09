@@ -1,19 +1,14 @@
 <?php
-
 namespace frontend\controllers;
-
-use common\core\base\Controller;
+use frontend\core\base\BaseController;
 
 /**
- * 登录控制器.
- * Class LoginController
+ * 面试信息.
+ * Class InfoController
  * @package frontend\controllers
  */
-class LoginController extends Controller{
-
-    /**
-     * 登录的方法.
-     */
+class InfoController extends BaseController
+{
     public function actionIndex()
     {
         return $this->render('index');
