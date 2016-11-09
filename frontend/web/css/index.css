@@ -1,0 +1,16 @@
+.rotateActive{
+    transition: all 1s linear;
+    animation: rotateAnimate 1s linear;
+}
+@keyframes rotateAnimate {
+    0%{transform: rotateY(0deg)}
+    100%{transform: rotateY(360deg)}
+}
+
+.p {
+    margin: 20px auto 0px;
+    font-size: 18px;
+    color: #1F1F1F;
+    font-family: "arial", "微软雅黑";
+    color: #444444;
+}
