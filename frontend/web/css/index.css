@@ -14,3 +14,10 @@
     font-family: "arial", "微软雅黑";
     color: #444444;
 }
+.selectXueke {
+    text-decoration: none;
+    display: block;
+}
+.selectXueke:hover {
+    text-decoration: none;
+}
