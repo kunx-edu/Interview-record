@@ -19,5 +19,6 @@ class InterviewController extends BaseController
     {
         $type = Yii::$app->request->get('type');
         echo "添加".$type;
+        return $this->render('add');
     }
 }
