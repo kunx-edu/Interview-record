@@ -50,10 +50,4 @@ class Student extends \yii\db\ActiveRecord
             'is_validate' => 'Is Validate',
         ];
     }
-
-
-    public function getStudentByEmail($email)
-    {
-        return $this->findOne(['email'=>$email]);
-    }
 }

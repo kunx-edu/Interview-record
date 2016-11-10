@@ -66,7 +66,6 @@ class StudentService extends BaseService implements IStudentService
     public function login($email, $password)
     {
         //根据email来查询数据.
-//        $res = $this->stu->getStudentByEmail($email);
         $res = Student::findOne(['email'=>$email]);
         return $res;
     }
