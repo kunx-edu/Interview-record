@@ -4,10 +4,19 @@ namespace business\studentService\service;
 
 use business\common\BaseService;
 use business\interFaces\studentInterFace\IStudentService;
+use business\studentService\model\Student;
 use Yii;
 use yii\base\Exception;
 class StudentService extends BaseService implements IStudentService
 {
+    private $stu;
+
+    public function __construct()
+    {
+        if (empty($this->stu)) {
+            $this->stu = new Student();
+        }
+    }
 //
 //    private $user;
 //    public function __construct()
@@ -56,6 +65,9 @@ class StudentService extends BaseService implements IStudentService
      */
     public function login($email, $password)
     {
-        return true;
+        //根据email来查询数据.
+//        $res = $this->stu->getStudentByEmail($email);
+        $res = Student::findOne(['email'=>$email]);
+        return $res;
     }
 }

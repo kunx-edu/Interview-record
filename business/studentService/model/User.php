@@ -1,6 +1,6 @@
 <?php
 
-namespace business\userService\dao;
+namespace business\userService\model;
 
 use Yii;
 use common\helper\ConstHelper;

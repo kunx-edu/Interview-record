@@ -70,7 +70,20 @@ class StudentLoginForm extends Model
     {
         //验证是否通过.
         if ($this->validate()) {
-            return Helper::getService('Stu.Student')->login($data['email'], $data['password']);
+            $res = Helper::getService('Stu.Student')->login($data['email'], $data['password']);
+            if (!$res) {
+                $this->addError('email', '邮箱或者密码错误');
+                return false;
+            }
+
+            //判断查询出来的密码与输入的密码是否相同.
+            if ($res['password'] != md5($data['password'])) {
+                $this->addError('email', '邮箱或者密码错误');
+                return false;
+            }
+            //设置session.
+            Yii::$app->session->set('student', $res);
+            return true;
         } else {
             return false;
         }
