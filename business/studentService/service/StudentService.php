@@ -17,12 +17,6 @@ class StudentService extends BaseService implements IStudentService
             $this->stu = new Student();
         }
     }
-//
-//    private $user;
-//    public function __construct()
-//    {
-//        $this->user = new User();
-//    }
 //    /**
 //     * 注册的方法.
 //     * @param $userData => ['account','password'].
