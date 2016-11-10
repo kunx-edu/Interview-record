@@ -1,0 +1,31 @@
+.add {
+    font-family: Arial,"Lucida Grande","Microsoft Yahei","Hiragino Sans GB","Hiragino Sans GB W3",SimSun,"
+}
+.hide {
+    display: none;
+}
+.radio {
+    font-size: 14px;
+}
+#company_name {
+    height: 33.64px;
+}
+.revinp {
+    float: left;
+    display: inline;
+}
+.level .level_solid {
+    background-position: 0px 0px;
+}
+.level .level_hollow {
+    float: left;
+    background-image: url("../image/icon2.png");
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
+.button {
+    text-align: center;
+}
