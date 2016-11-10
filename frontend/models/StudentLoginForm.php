@@ -35,8 +35,9 @@ class StudentLoginForm extends Model
     public function rules()
     {
         return [
+            ['email','required','message'=>'邮箱不能为空'],
+            ['password','required','message'=>'密码不能为空'],
             ['email','checkEmail'],
-//            ['password','required','message'=>'密码不能为空'],
         ];
     }
 
@@ -69,7 +70,7 @@ class StudentLoginForm extends Model
     {
         //验证是否通过.
         if ($this->validate()) {
-            return Helper::getService('Stu.Stusent')->login($data['email'], $data['password']);
+            return Helper::getService('Stu.Student')->login($data['email'], $data['password']);
         } else {
             return false;
         }

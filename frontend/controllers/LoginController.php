@@ -38,10 +38,10 @@ class LoginController extends Controller{
 
         $model = new StudentLoginForm();
 
-        if ($model->load($req) && $model->login($model['StudentLoginForm'])) {
+        if ($model->load($req) && $model->login($req['StudentLoginForm'])) {
             echo "登录成功";
         } else {
-            var_dump($model->getErrors());
+            return json_encode($model->getErrors());
         }
 
     }

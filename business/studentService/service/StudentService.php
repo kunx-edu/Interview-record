@@ -1,6 +1,6 @@
 <?php
 
-namespace business\userService\service;
+namespace business\studentService\service;
 
 use business\common\BaseService;
 use business\interFaces\studentInterFace\IStudentService;

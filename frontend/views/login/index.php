@@ -10,10 +10,12 @@
             <div class="form-group col-md-12">
                 <label for="email">邮箱</label>
                     <?= Html::activeInput('text', $model, 'email', ['class'=>'form-control', 'id'=>'email', 'placeholder'=>'输入邮箱'])?>
+                    <div class="help-block err" style="color: #ff0000" id="email_err"></div>
             </div>
             <div class="form-group col-md-12">
                 <label for="password">密码</label>
-                <?= Html::activeInput('password', $model, 'password', ['class'=>'form-control', 'id'=>'password', 'placeholder'=>'输入邮箱'])?>
+                <?= Html::activeInput('password', $model, 'password', ['class'=>'form-control', 'id'=>'password', 'placeholder'=>'输入密码'])?>
+                <div class="help-block err" style="color: #ff0000" id="password_err"></div>
             </div>
             <div class="form-group">
                 <div class="col-md-12" style="font-size: 12px;margin-bottom: 10px;margin-top: 10px;">
