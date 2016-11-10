@@ -24,4 +24,24 @@ class Helper {
     {
         header("Location:".$url);
     }
+
+    /**
+     * 用来验证是否为邮箱地址.
+     * @param $email
+     * @return bool
+     */
+    public static function isEmail($email)
+    {
+        if (preg_match(ConstHelper::EMAIL_REGEX, $email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function getService($serviceName)
+    {
+        return Yii::$container->get($serviceName.'Service');
+    }
+
 }

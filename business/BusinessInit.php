@@ -1,9 +1,6 @@
 <?php
 /**
  * 依赖注入.
- * User: Administrator
- * Date: 2016/3/17
- * Time: 17:01
  */
 namespace business;
 
@@ -17,11 +14,11 @@ class BusinessInit {
      */
     public function init()
     {
-        $this->userService();
+        $this->studentService();
     }
 
-    private function userService()
+    private function studentService()
     {
-        Yii::$container->setSingleton('User.UserRegisterService', 'business\userService\service\UserRegisterService');
+        Yii::$container->setSingleton('Stu.StudentService', 'business\studentService\service\StudentService');
     }
 }

@@ -2,7 +2,9 @@
 
 namespace frontend\models;
 
+use common\helper\Helper;
 use Yii;
+use yii\base\Model;
 
 /**
  * This is the model class for table "student".
@@ -14,11 +16,14 @@ use Yii;
  * @property integer $class_id
  * @property integer $is_validate
  */
-class StudentLoginForm extends \yii\db\ActiveRecord
+class StudentLoginForm extends Model
 {
     /**
      * @inheritdoc
      */
+    public $email;
+    public $password;
+
     public static function tableName()
     {
         return 'student';
@@ -30,10 +35,8 @@ class StudentLoginForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['email','required','message'=>'邮箱不能为空'],
-            ['password','required','message'=>'密码不能为空'],
-
-            ['email','checkEmail']
+            ['email','checkEmail'],
+//            ['password','required','message'=>'密码不能为空'],
         ];
     }
 
@@ -52,10 +55,23 @@ class StudentLoginForm extends \yii\db\ActiveRecord
         ];
     }
 
-    public function checkEmail
-
-    public function login()
+    public function checkEmail($attribute)
     {
+        if(!Helper::isEmail($this->$attribute)){
+            $this->addError($attribute, '邮箱格式错误');
+        }
+    }
 
+    /**
+     * 登录主方法.
+     */
+    public function login($data)
+    {
+        //验证是否通过.
+        if ($this->validate()) {
+            return Helper::getService('Stu.Stusent')->login($data['email'], $data['password']);
+        } else {
+            return false;
+        }
     }
 }

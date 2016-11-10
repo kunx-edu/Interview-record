@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\core\base\Controller;
+use common\helper\ConstHelper;
 use frontend\models\StudentLoginForm;
 use Yii;
 
@@ -35,13 +36,12 @@ class LoginController extends Controller{
         //接收post请求发送过来的参数.
         $req = Yii::$app->request->getBodyParams();
 
-//        $this->student()->setAttributes($req);
-//        $res = $this->student()->validate();
-//        var_dump($res);
-        if ($this->student()->load($req) && $this->student()->login()) {
+        $model = new StudentLoginForm();
 
+        if ($model->load($req) && $model->login($model['StudentLoginForm'])) {
+            echo "登录成功";
         } else {
-
+            var_dump($model->getErrors());
         }
 
     }

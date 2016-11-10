@@ -1,9 +1,6 @@
 <?php
 /**
  * 所有Service层的基础类.
- * User: Administrator
- * Date: 2016/3/17
- * Time: 17:05
  */
 namespace business\common;
 
