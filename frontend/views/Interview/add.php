@@ -86,4 +86,8 @@
         <div class=" button"><button type="submit" class="btn btn-primary">提交</button></div>
 
     </form>
+
+    <?= Html::beginForm('?r=interview/upload','post',['enctype'=>'multipart/form-data','id'=>'up']);?>
+        <input type="file" value="" id="in_file" name="in_photo" style="display: none;">
+    <?= Html::endForm();?>
 </div>

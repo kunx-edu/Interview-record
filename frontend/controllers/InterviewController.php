@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use common\helper\UploadFactoryHelper;
 use frontend\core\base\BaseController;
 use frontend\models\Interview;
 use frontend\models\InterviewQuestionsPhoto;
@@ -29,5 +30,14 @@ class InterviewController extends BaseController
         $photo = new InterviewQuestionsPhoto();
         $type = Yii::$app->request->get('type');
         return $this->render('add', ['model'=>$model, 'photo'=>$photo]);
+    }
+
+    public function actionUpload()
+    {
+        var_dump($_FILES);
+        exit;
+        $upload = UploadFactoryHelper::Factory();
+        $url = $upload->uploadOne('in_photo');
+        return json_encode(['status'=>'success','url'=>$url]);
     }
 }
