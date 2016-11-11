@@ -82,6 +82,7 @@ class StudentRegisterForm extends Model
             }
 
             $res = Helper::getService('Stu.Student')->register($data);
+
             return $res;
         } else {
             return false;

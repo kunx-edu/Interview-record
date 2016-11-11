@@ -31,7 +31,8 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['class_id', 'is_validate'], 'integer'],
-            [['email', 'username'], 'string', 'max' => 20],
+            ['email','string', 'max' => 40],
+            ['username','string', 'max' => 20],
             [['password'], 'string', 'max' => 32],
         ];
     }
@@ -60,6 +61,7 @@ class Student extends \yii\db\ActiveRecord
         $this->setAttributes($data);
         $this->save();
         $id = $this->getPrimaryKey();
+//        var_dump($this->getErrors());
         return $id;
     }
 }
