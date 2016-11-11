@@ -63,4 +63,23 @@ class StudentService extends BaseService implements IStudentService
         $res = Student::findOne(['email'=>$email]);
         return $res;
     }
+
+    /**
+     * 注册的主方法.
+     * 往tudent表中添加学生信息.
+     * @param $data
+     * @return mixed
+     */
+    public function register($data)
+    {
+        $data['password'] = md5($data['password']);
+        unset($data['rePassword']);
+        try{
+            $id = $this->stu->add($data);
+            return $id;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

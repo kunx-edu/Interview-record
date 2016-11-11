@@ -50,4 +50,16 @@ class Student extends \yii\db\ActiveRecord
             'is_validate' => 'Is Validate',
         ];
     }
+
+    /**
+     * 添加用户信息.
+     * @param $data
+     */
+    public function add($data)
+    {
+        $this->setAttributes($data);
+        $this->save();
+        $id = $this->getPrimaryKey();
+        return $id;
+    }
 }

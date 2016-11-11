@@ -12,4 +12,11 @@ interface IStudentService
      * @return mixed
      */
     public function login($email, $password);
+
+    /**
+     * 登录的接口.
+     * @param $data
+     * @return mixed
+     */
+    public function register($data);
 }
