@@ -1,6 +1,7 @@
 <?php
     use yii\helpers\Html;
     \frontend\assets\LoginAsset::register($this);
+    $this->title = "登录";
 ?>
 <div class="container" style="margin-top: 60px;">
     <div class="col-md-4"></div>

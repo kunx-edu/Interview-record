@@ -29,7 +29,7 @@
             <div class="help-block err" style="color: #ff0000" id="username_err"></div>
         </div>
         <div class="form-group col-md-12">
-            <div class="" style="font-size: 12px;margin-bottom: 10px;margin-top: 10px;"><span class="S_txt2">还没有帐号？</span><a target="_blank" href="?r=register">直接登录»</a>
+            <div class="" style="font-size: 12px;margin-bottom: 10px;margin-top: 10px;"><span class="S_txt2">还没有帐号？</span><a target="_blank" href="?r=login">直接登录»</a>
             </div>
             <button type="button" id="button" class="btn btn-primary  col-md-12">注册</button>
         </div>
