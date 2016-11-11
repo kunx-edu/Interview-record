@@ -62,7 +62,6 @@
             <label for="is_written_examination">上传笔试题照片</label>
             <br/>
             <button class="btn"type="button" id="upload_file">点击上传文件</button>
-            <input type="file" value="" id="in_file" name="in_file" style="display: none;">
             <div class="help-block hide" id="is_written_examination_err"></div>
         </div>
 
@@ -88,6 +87,6 @@
     </form>
 
     <?= Html::beginForm('?r=interview/upload','post',['enctype'=>'multipart/form-data','id'=>'up']);?>
-        <input type="file" value="" id="in_file" name="in_photo" style="display: none;">
+        <input type="file" id="in_file" name="in_photo" style="display: none">
     <?= Html::endForm();?>
 </div>

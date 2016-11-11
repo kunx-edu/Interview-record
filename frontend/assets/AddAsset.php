@@ -14,6 +14,7 @@ class AddAsset extends AppAsset
         'css/add.css',
     ];
     public $js = [
-        'js/add.js'
+        'js/add.js',
+        'http://misc.weijuyuan.com/vendor/uploadFile/js/jquery.form.js'
     ];
 }
