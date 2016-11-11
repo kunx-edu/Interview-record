@@ -51,7 +51,7 @@ class UpYunHelper extends BaseUploadHelper
             $pics = $this->path($name);
             $rsp = $upyun->writeFile('/'.$pics, $fh, True);   // 上传图片，自动创建目录
             fclose($fh);
-            return $pics;
+            return $this->visit_url.$pics.'!small';
         }catch (Exception $e){
             return false;
         }

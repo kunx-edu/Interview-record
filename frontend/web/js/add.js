@@ -16,7 +16,7 @@ $(function(){
                 if(data.status === "success"){
                     //当上传成功,自动创建html
                     $('<li>' +
-                    '<img src="/'+data.url+'" alt=""/>' +
+                    '<img src="'+data.url+'" alt=""/>' +
                     '<span class="btn-closed">X</span>' +
                     '</li>').appendTo($(".file-imgList"))
                 }
@@ -28,5 +28,9 @@ $(function(){
             async: true
         });
     })
+
+    $('.file-imgList').on("click",".btn-closed", function(){
+        console.debug($(this).parent().remove());
+    });
 })
 

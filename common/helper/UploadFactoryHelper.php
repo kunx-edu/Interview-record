@@ -1,10 +1,6 @@
 <?php
 /**
  * 上传类的工厂模式方法.
- * Created by PhpStorm.
- * User: office
- * Date: 2016/7/19
- * Time: 11:28
  */
 
 namespace common\helper;

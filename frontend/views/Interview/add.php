@@ -63,39 +63,6 @@
             <br/>
             <button class="btn"type="button" id="upload_file">点击上传文件</button>
             <ul class="file-imgList">
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-                <li>
-                    <img src="../web/image/icon2.png" alt=""/>
-                    <span class="btn-closed">X</span>
-                </li>
-
             </ul>
             <div class="help-block hide" id="is_written_examination_err"></div>
         </div>
