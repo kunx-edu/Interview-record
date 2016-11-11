@@ -14,6 +14,6 @@ class LayerAsset extends AppAsset
         'css/layui.css',
     ];
     public $js = [
-        'js/layui.js'
+        'js/layer.js'
     ];
 }
