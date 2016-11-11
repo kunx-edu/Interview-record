@@ -59,6 +59,14 @@
         </div>
 
         <div class="form-group">
+            <label for="is_written_examination">上传笔试题照片</label>
+            <br/>
+            <button class="btn"type="button" id="upload_file">点击上传文件</button>
+            <input type="file" value="" id="in_file" name="in_file" style="display: none;">
+            <div class="help-block hide" id="is_written_examination_err"></div>
+        </div>
+
+        <div class="form-group">
             <label for="is_written_examination">上传录音文件</label><br/>
             <div class="layui-box layui-upload-button">
                 <form target="layui-upload-iframe" method="post" key="set-mine" enctype="multipart/form-data" action="">
