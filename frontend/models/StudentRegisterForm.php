@@ -72,6 +72,15 @@ class StudentRegisterForm extends Model
     public function register($data)
     {
         if ($this->validate()) {
+
+            //验证邮箱是否注册过.
+            $rst = Helper::getService('Stu.Student')->getStudentByEmail($data['email']);
+
+            if (!empty($rst)) {
+                $this->addError('email', '该邮箱已经存在');
+                return false;
+            }
+
             $res = Helper::getService('Stu.Student')->register($data);
             return $res;
         } else {

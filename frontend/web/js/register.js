@@ -4,7 +4,6 @@ $(function(){
         $.post('?r=register/reg', $('form').serialize(), function(data){
 
             if (data.status == 'success') {
-                //window.location.href='?r=login';
                 layer.msg('注册成功');
                 setTimeout(function(){
                     window.location.href="?r=login"

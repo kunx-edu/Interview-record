@@ -82,4 +82,13 @@ class StudentService extends BaseService implements IStudentService
             return false;
         }
     }
+    /**
+     * 根据邮箱来查询学生信息.
+     * @param $email
+     * @return mixed
+     */
+    public function getStudentByEmail($email)
+    {
+        return Student::findOne(['email'=>$email]);
+    }
 }

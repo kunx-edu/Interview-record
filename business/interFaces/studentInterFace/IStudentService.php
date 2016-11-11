@@ -19,4 +19,11 @@ interface IStudentService
      * @return mixed
      */
     public function register($data);
+
+    /**
+     * 根据邮箱来查询学生信息.
+     * @param $email
+     * @return mixed
+     */
+    public function getStudentByEmail($email);
 }
