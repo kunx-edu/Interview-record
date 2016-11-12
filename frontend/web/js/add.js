@@ -18,13 +18,16 @@ $(function(){
                     '<img src="'+data.url+'" alt=""/>' +
                     '<span class="btn-closed">X</span>' +
                     '</li>').appendTo($(".file-imgList"))
+
+                    $('<input type="hidden" name="InterviewQuestionsPhoto[url][]" value="'+data.path+'">').appendTo($(".img-up"))
                 } else {
                     layer.msg(data.message);
                 }
                 layer.closeAll('loading');
             },
             error: function (data) {
-                console.debug("error",data)
+                layer.msg('上传失败')
+                layer.closeAll('loading');
             },//请求失败的函数
             async: true
         });

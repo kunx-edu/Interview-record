@@ -8,7 +8,8 @@
 ?>
 <div class="container add">
     <h3 id="overview-doctype">添加面试记录</h3>
-    <form>
+<!--    <form action="?r=interview/adds" method="post">-->
+    <?=Html::beginForm('?r=interview/adds','post');?>
         <div class="form-group">
             <label for="company_name">公司名称</label>
             <?= Html::activeInput('text', $model, 'company_name',['class'=>"form-control", 'placeholder'=>'公司名称','id'=>"company_name"])?>
@@ -62,6 +63,7 @@
             <label for="is_written_examination">上传笔试题照片</label>
             <br/>
             <button class="btn"type="button" id="upload_file">点击上传文件</button>
+            <div class="img-up"></div>
             <ul class="file-imgList">
             </ul>
             <div class="help-block hide" id="is_written_examination_err"></div>
@@ -70,9 +72,7 @@
         <div class="form-group">
             <label for="is_written_examination">上传录音文件</label><br/>
             <div class="layui-box layui-upload-button">
-                <form target="layui-upload-iframe" method="post" key="set-mine" enctype="multipart/form-data" action="">
-                    <input type="file" name="file1" lay-type="audio" class="layui-upload-file">
-                </form>
+
                 <span class="layui-upload-icon"><i class="icon-cloud-upload"></i>选择录音文件</span>
             </div>
             <div class="help-block hide" id="is_written_examination_err"></div>
@@ -86,7 +86,7 @@
 
         <div class=" button"><button type="submit" class="btn btn-primary">提交</button></div>
 
-    </form>
+    <?=Html::endForm();?>
 
     <?= Html::beginForm('?r=interview/upload','post',['enctype'=>'multipart/form-data','id'=>'up']);?>
         <input type="file" id="in_file" name="in_photo" style="display: none">

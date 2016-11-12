@@ -37,9 +37,15 @@ class InterviewController extends BaseController
         $upload = UploadFactoryHelper::Factory();
         $arr = $upload->uploadOne('in_photo');
         if ($arr['status']) {
-            return json_encode(['status'=>'success','url'=>$arr['url']]);
+            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url'].'!small', 'path'=>$arr['url']]);
         } else {
             return json_encode(['status'=>'error', 'message'=>$arr['message']]);
         }
+    }
+
+    public function actionAdds()
+    {
+        echo '<pre>';
+        var_dump(Yii::$app->request->getBodyParams());
     }
 }

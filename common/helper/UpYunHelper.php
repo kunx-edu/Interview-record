@@ -42,6 +42,12 @@ class UpYunHelper extends BaseUploadHelper
      */
     public function uploadOne($name, $fixs = ['.png','.jpg','.jpeg','.gif'])
     {
+        //判断文件是否超过大小.
+//        var_dump($_FILES);exit;
+        if ($_FILES[$name]['error'] == 1) {
+            return ['status'=>false,'message'=>"文件太大无法上传"];
+        }
+
         //判断是否允许该格式的文件上传.
         $fix = $this->getFileFix($_FILES[$name]['name']);
 
@@ -59,7 +65,7 @@ class UpYunHelper extends BaseUploadHelper
             $pics = $this->path($name);
             $rsp = $upyun->writeFile('/'.$pics, $fh, True);   // 上传图片，自动创建目录
             fclose($fh);
-            return ['status'=>true, 'url'=>$this->visit_url.$pics.'!small'];
+            return ['status'=>true, 'url'=>$pics];
         }catch (Exception $e){
             return false;
         }
