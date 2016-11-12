@@ -1,4 +1,5 @@
 <?php
+    use yii\helpers\ArrayHelper;
     use yii\helpers\Html;
     \frontend\assets\AddAsset::register($this);
     \frontend\assets\DateAsset::register($this);
@@ -9,7 +10,7 @@
 <div class="container add">
     <h3 id="overview-doctype">添加面试记录</h3>
 <!--    <form action="?r=interview/adds" method="post">-->
-    <?=Html::beginForm('?r=interview/adds','post');?>
+    <?=Html::beginForm('?r=interview/add-interview','post');?>
         <div class="form-group">
             <label for="company_name">公司名称</label>
             <?= Html::activeInput('text', $model, 'company_name',['class'=>"form-control", 'placeholder'=>'公司名称','id'=>"company_name"])?>
@@ -24,6 +25,11 @@
         <div class="form-group">
             <label for="company_info">公司简介</label>
             <?= Html::activeTextarea($model, 'company_info',['class'=>'form-control','rows'=>3])?>
+            <div class="help-block hide" id="company_info_err"></div>
+        </div>
+        <div class="form-group">
+            <label for="class">选择班级</label>
+            <?= Html::dropDownList('ClassForm[class_name]',null, ArrayHelper::map($classArr, 'id', 'class_name'), ['class'=>'form-control']); ?>
             <div class="help-block hide" id="company_info_err"></div>
         </div>
 
@@ -69,14 +75,14 @@
             <div class="help-block hide" id="is_written_examination_err"></div>
         </div>
 
-        <div class="form-group">
-            <label for="is_written_examination">上传录音文件</label><br/>
-            <div class="layui-box layui-upload-button">
-
-                <span class="layui-upload-icon"><i class="icon-cloud-upload"></i>选择录音文件</span>
-            </div>
-            <div class="help-block hide" id="is_written_examination_err"></div>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="is_written_examination">上传录音文件</label><br/>-->
+<!--            <div class="layui-box layui-upload-button">-->
+<!---->
+<!--                <span class="layui-upload-icon"><i class="icon-cloud-upload"></i>选择录音文件</span>-->
+<!--            </div>-->
+<!--            <div class="help-block hide" id="is_written_examination_err"></div>-->
+<!--        </div>-->
 
         <div class="form-group">
             <label for="grade">面试评分</label>

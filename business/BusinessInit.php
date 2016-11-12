@@ -15,10 +15,16 @@ class BusinessInit {
     public function init()
     {
         $this->studentService();
+        $this->classService();
     }
 
     private function studentService()
     {
         Yii::$container->setSingleton('Stu.StudentService', 'business\studentService\service\StudentService');
+    }
+
+    private function classService()
+    {
+        Yii::$container->setSingleton('Class.ClassService', 'business\classService\service\ClassService');
     }
 }

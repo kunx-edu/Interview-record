@@ -65,4 +65,17 @@ class Interview extends \yii\db\ActiveRecord
             'is_delete' => 'Is Delete',
         ];
     }
+
+    /**
+     * 添加面试记录的方法.
+     */
+    public function addInterview($data)
+    {
+        //验证.
+        if ($this->validate()) {
+            var_dump($data);
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,7 +1,9 @@
 <?php
 namespace frontend\controllers;
+use common\helper\Helper;
 use common\helper\UploadFactoryHelper;
 use frontend\core\base\BaseController;
+use frontend\models\ClassForm;
 use frontend\models\Interview;
 use frontend\models\InterviewQuestionsPhoto;
 use Yii;
@@ -24,12 +26,18 @@ class InterviewController extends BaseController
      */
     public function actionAdd()
     {
+        //获取学科.
+        $subject = Yii::$app->request->get('type');
+
+        //查询学科下面所有的班级.
+        $classArr = Helper::getService('Class.Class')->getClassByType($subject);
+
         $model = new Interview();
 
         //实例化上传提交面试题的模型.
         $photo = new InterviewQuestionsPhoto();
         $type = Yii::$app->request->get('type');
-        return $this->render('add', ['model'=>$model, 'photo'=>$photo]);
+        return $this->render('add', ['model'=>$model, 'photo'=>$photo, 'classArr'=>$classArr]);
     }
 
     public function actionUpload()
@@ -43,9 +51,22 @@ class InterviewController extends BaseController
         }
     }
 
-    public function actionAdds()
+    public function actionAddInterview()
     {
-        echo '<pre>';
-        var_dump(Yii::$app->request->getBodyParams());
+        //获取post发送过来的数据.
+        $data = Yii::$app->request->getBodyParams();
+
+        //日期转换时间戳.
+        $data['Interview']['interview_time'] = strtotime($data['Interview']['interview_time']);
+
+        $model = new Interview();
+
+        if ($model->load($data) && $model->addInterview($data)) {
+
+        } else {
+            var_dump($model->getErrors());
+        }
+
+
     }
 }

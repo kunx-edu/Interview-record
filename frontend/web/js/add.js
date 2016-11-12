@@ -19,7 +19,7 @@ $(function(){
                     '<span class="btn-closed">X</span>' +
                     '</li>').appendTo($(".file-imgList"))
 
-                    $('<input type="hidden" name="InterviewQuestionsPhoto[url][]" value="'+data.path+'">').appendTo($(".img-up"))
+                    $('<input type="hidden" name="InterviewQuestionsPhoto[url][]" value="'+data.path+'" path="'+data.url+'">').appendTo($(".img-up"))
                 } else {
                     layer.msg(data.message);
                 }
@@ -34,7 +34,19 @@ $(function(){
     })
 
     $('.file-imgList').on("click",".btn-closed", function(){
+        //删除之前获取input中的path.
+        //用来删除img-up中隐藏域中对应的图片值.
+        var src = $(this).prev().attr('src')
+
+        //删除自己.
         $(this).parent().remove();
+
+        //删除img-up中图片对应的隐藏域值.
+        $('input[path="'+src+'"]').remove();
     });
+
+    $("#interview_time").on('click', function(){
+        $("#interview_time").cxCalendar();
+    })
 })
 
