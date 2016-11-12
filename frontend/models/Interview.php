@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\helper\Helper;
 use Yii;
 
 /**
@@ -83,7 +84,10 @@ class Interview extends \yii\db\ActiveRecord
     {
         //验证.
         if ($this->validate()) {
-            var_dump($data);
+
+            //保存面试记录到数据库.
+            Helper::getService('Stu');
+
         } else {
             return false;
         }
