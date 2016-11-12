@@ -39,13 +39,13 @@ class Interview extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['company_name'], 'required'],
-//            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete', 'class_id'], 'integer'],
-//            [['interview_info'], 'string'],
-//            [['grade'], 'number'],
-//            [['company_name'], 'string', 'max' => 40],
-//            [['company_address', 'salary', 'sound_recording_file', 'company_info'], 'string', 'max' => 255],
-//            [['occupation'], 'string', 'max' => 20],
+            [['company_name'], 'required'],
+            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete', 'class_id'], 'integer'],
+            [['interview_info'], 'string'],
+            [['grade'], 'number'],
+            [['company_name'], 'string', 'max' => 40],
+            [['company_address', 'salary', 'sound_recording_file', 'company_info'], 'string', 'max' => 255],
+            [['occupation'], 'string', 'max' => 20],
         ];
     }
 
@@ -84,7 +84,6 @@ class Interview extends \yii\db\ActiveRecord
         $this->save();
         $id = $this->getPrimaryKey();
         return $id;
-
     }
 
 }

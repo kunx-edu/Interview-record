@@ -21,9 +21,7 @@ class InterviewService  extends BaseService implements IInterviewService
      */
     public function addInterview($data)
     {
-//        echo '<pre>';
-//        var_dump($data);
-//        exit;
+
         $tran = Yii::$app->db->beginTransaction();
         try{
             //开启事物因为要操作多张表.
