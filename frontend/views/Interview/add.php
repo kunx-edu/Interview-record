@@ -27,10 +27,16 @@
             <?= Html::activeTextarea($model, 'company_info',['class'=>'form-control','rows'=>3])?>
             <div class="help-block hide" id="company_info_err"></div>
         </div>
+
+        <div class="form-group">
+            <label for="occupation">面试职位</label>
+            <?= Html::activeInput('text', $model, 'occupation',['class'=>"form-control", 'placeholder'=>'面试职位','id'=>"occupation"])?>
+            <div class="help-block hide" id="occupation_err"></div>
+        </div>
         <div class="form-group">
             <label for="class">选择班级</label>
-            <?= Html::dropDownList('ClassForm[class_name]',null, ArrayHelper::map($classArr, 'id', 'class_name'), ['class'=>'form-control']); ?>
-            <div class="help-block hide" id="company_info_err"></div>
+            <?= Html::dropDownList('ClassForm[class_id]',null, ArrayHelper::map($classArr, 'id', 'class_name'), ['class'=>'form-control','id'=>'class']); ?>
+            <div class="help-block hide" id="class_err"></div>
         </div>
 
         <div class="form-group">
@@ -42,7 +48,7 @@
             <label for="company_name">要求薪水</label>
             <div class="input-group"  style="height: 34px;">
                 <div class="input-group-addon addon" style="height: 34px;">￥</div>
-                <?= Html::activeInput('text', $model, 'salary',['class'=>"form-control", 'placeholder'=>'要求薪水','id'=>"company_name"])?>
+                <?= Html::activeInput('text', $model, 'salary',['class'=>"form-control", 'placeholder'=>'要求薪水','id'=>"salary"])?>
             </div>
             <div class="help-block hide" id="salary_err"></div>
         </div>

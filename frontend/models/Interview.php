@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "interview".
  *
  * @property integer $id
+ * @property integer $class_id
  * @property string $company_name
  * @property string $company_address
  * @property string $salary
@@ -36,12 +37,21 @@ class Interview extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_name'], 'required'],
-            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete'], 'integer'],
-            [['interview_info'], 'string'],
-            [['grade'], 'number'],
-            [['company_name'], 'string', 'max' => 40],
-            [['company_address', 'salary', 'sound_recording_file'], 'string', 'max' => 255],
+            ['company_name','required','message'=>'公司名称不能为空'],
+            ['company_address','required','message'=>'公司地址不能为空'],
+            ['occupation','required','message'=>'面试职位不能为空'],
+            ['class_id','required','message'=>'班级不能为空'],
+            ['company_type','required','message'=>'公司类型不能为空'],
+            ['interview_time','required','message'=>'面试时间不能为空'],
+            ['interview_info','required','message'=>'面试记录不能为空'],
+            ['is_written_examination','required','message'=>'是否有笔试不能为空'],
+            ['grade','required','message'=>'面试评分不能为空'],
+//            [['company_name'], 'required'],
+//            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete'], 'integer'],
+//            [['interview_info'], 'string'],
+//            [['grade'], 'number'],
+//            [['company_name'], 'string', 'max' => 40],
+//            [['company_address', 'salary', 'sound_recording_file'], 'string', 'max' => 255],
         ];
     }
 
