@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label for="class">选择班级</label>
-            <?= Html::dropDownList('ClassForm[class_id]',null, ArrayHelper::map($classArr, 'id', 'class_name'), ['class'=>'form-control','id'=>'class']); ?>
+            <?= Html::dropDownList('Interview[class_id]',null, ArrayHelper::map($classArr, 'id', 'class_name'), ['class'=>'form-control','id'=>'class']); ?>
             <div class="help-block hide" id="class_err"></div>
         </div>
 
