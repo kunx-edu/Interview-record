@@ -29,11 +29,7 @@ class InterviewService  extends BaseService implements IInterviewService
             //开启事物因为要操作多张表.
             //1.添加面试信息.
             $interview = new Interview();
-            $interview->setAttributes($data['Interview']);
-            $interview->save();
-            echo '<pre>';
-            var_dump($interview->getErrors());
-            exit;
+            $interview->addInterview($data['Interview']);
             //2.添加面试题图片.
             //判断是否有上传面试题图片.
             if (!empty($data['InterviewQuestionsPhoto'])) {

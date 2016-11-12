@@ -72,4 +72,19 @@ class Interview extends \yii\db\ActiveRecord
             'class_id' => 'Class ID',
         ];
     }
+
+    /**
+     * 添加.
+     * @param $data
+     * @return mixed
+     */
+    public function addInterview($data)
+    {
+        $this->setAttributes($data);
+        $this->save();
+        $id = $this->getPrimaryKey();
+        return $id;
+
+    }
+
 }
