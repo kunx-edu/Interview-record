@@ -35,7 +35,11 @@ class InterviewController extends BaseController
     public function actionUpload()
     {
         $upload = UploadFactoryHelper::Factory();
-        $url = $upload->uploadOne('in_photo');
-        return json_encode(['status'=>'success','url'=>$url]);
+        $arr = $upload->uploadOne('in_photo');
+        if ($arr['status']) {
+            return json_encode(['status'=>'success','url'=>$arr['url']]);
+        } else {
+            return json_encode(['status'=>'error', 'message'=>$arr['message']]);
+        }
     }
 }

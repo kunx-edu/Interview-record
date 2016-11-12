@@ -56,7 +56,7 @@ class BaseUploadHelper
      * @param $file
      * @return string
      */
-    private function getFileFix($file)
+    protected function getFileFix($file)
     {
         $arr = explode('.', $file);
         $this->fix = '.'.end($arr);

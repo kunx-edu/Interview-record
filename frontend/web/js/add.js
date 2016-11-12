@@ -12,13 +12,14 @@ $(function(){
             dataType: "json",//返回结果格式
             url: '?r=interview/upload',//请求地址
             success: function (data) {//请求成功后的函数
-                console.debug("success",data)
                 if(data.status === "success"){
                     //当上传成功,自动创建html
                     $('<li>' +
                     '<img src="'+data.url+'" alt=""/>' +
                     '<span class="btn-closed">X</span>' +
                     '</li>').appendTo($(".file-imgList"))
+                } else {
+                    layer.msg(data.message);
                 }
                 layer.closeAll('loading');
             },
@@ -30,7 +31,7 @@ $(function(){
     })
 
     $('.file-imgList').on("click",".btn-closed", function(){
-        console.debug($(this).parent().remove());
+        $(this).parent().remove();
     });
 })
 
