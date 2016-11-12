@@ -2,7 +2,7 @@
 /**
  * 面试记录的接口.
  */
-namespace business\interFaces\classInterFace;
+namespace business\interFaces\interviewInterFace;
 
 interface IInterviewService {
 

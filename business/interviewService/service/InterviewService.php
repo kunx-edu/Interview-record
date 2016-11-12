@@ -5,7 +5,7 @@
  */
 namespace business\interviewService\service;
 use business\common\BaseService;
-use business\interFaces\classInterFace\IInterviewService;
+use business\interFaces\interviewInterFace\IInterviewService;
 use business\interviewService\model\Interview;
 use business\interviewService\model\InterviewQuestionsPhoto;
 use yii\base\Exception;
@@ -21,6 +21,9 @@ class InterviewService  extends BaseService implements IInterviewService
      */
     public function addInterview($data)
     {
+//        echo '<pre>';
+//        var_dump($data);
+//        exit;
         $tran = Yii::$app->db->beginTransaction();
         try{
             //开启事物因为要操作多张表.
@@ -28,6 +31,9 @@ class InterviewService  extends BaseService implements IInterviewService
             $interview = new Interview();
             $interview->setAttributes($data['Interview']);
             $interview->save();
+            echo '<pre>';
+            var_dump($interview->getErrors());
+            exit;
             //2.添加面试题图片.
             //判断是否有上传面试题图片.
             if (!empty($data['InterviewQuestionsPhoto'])) {
@@ -39,6 +45,8 @@ class InterviewService  extends BaseService implements IInterviewService
 
             //提交事物.
             $tran->commit();
+
+            return true;
 
         } catch(Exception $e) {
 

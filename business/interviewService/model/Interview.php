@@ -3,7 +3,6 @@
 namespace business\interviewService\model;
 
 use Yii;
-use yii\base\Model;
 
 /**
  * This is the model class for table "interview".
@@ -24,7 +23,7 @@ use yii\base\Model;
  * @property string $occupation
  * @property integer $class_id
  */
-class Interview extends Model
+class Interview extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -40,13 +39,13 @@ class Interview extends Model
     public function rules()
     {
         return [
-            [['company_name'], 'required'],
-            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete', 'class_id'], 'integer'],
-            [['interview_info'], 'string'],
-            [['grade'], 'number'],
-            [['company_name'], 'string', 'max' => 40],
-            [['company_address', 'salary', 'sound_recording_file', 'company_info'], 'string', 'max' => 255],
-            [['occupation'], 'string', 'max' => 20],
+//            [['company_name'], 'required'],
+//            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete', 'class_id'], 'integer'],
+//            [['interview_info'], 'string'],
+//            [['grade'], 'number'],
+//            [['company_name'], 'string', 'max' => 40],
+//            [['company_address', 'salary', 'sound_recording_file', 'company_info'], 'string', 'max' => 255],
+//            [['occupation'], 'string', 'max' => 20],
         ];
     }
 

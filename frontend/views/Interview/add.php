@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="company_address">公司地址</label>
-            <?= Html::activeInput('text', $model, 'company_address',['class'=>"form-control", 'placeholder'=>'公司地址','id'=>"company_name"])?>
+            <?= Html::activeInput('text', $model, 'company_address',['class'=>"form-control", 'placeholder'=>'公司地址','id'=>"company_address"])?>
             <div class="help-block hide" id="company_address_err"></div>
         </div>
 
@@ -42,10 +42,10 @@
         <div class="form-group">
             <label for="company_type">公司类型</label>
             <?=Html::radioList('Interview[company_type]', '0',  [0=>"外包公司",1=>"自主产品"],['class'=>'radio']);?>
-            <div class="help-block hide" id="company_name_err"></div>
+            <div class="help-block hide" id="company_type_err"></div>
         </div>
         <div class="form-group">
-            <label for="company_name">要求薪水</label>
+            <label for="salary">要求薪水</label>
             <div class="input-group"  style="height: 34px;">
                 <div class="input-group-addon addon" style="height: 34px;">￥</div>
                 <?= Html::activeInput('text', $model, 'salary',['class'=>"form-control", 'placeholder'=>'要求薪水','id'=>"salary"])?>

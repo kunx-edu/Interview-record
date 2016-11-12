@@ -62,7 +62,7 @@ class InterviewController extends BaseController
         $model = new Interview();
 
         if ($model->load($data) && $model->addInterview($data)) {
-
+            echo 'yes';
         } else {
             var_dump($model->getErrors());
         }
