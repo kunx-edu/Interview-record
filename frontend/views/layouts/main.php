@@ -37,7 +37,7 @@ AppAsset::register($this);
             <ul class="nav navbar-nav">
                 <li><a href="?r=interview">面试信息</a></li>
                 <li><a href="?r=train">培训公司</a></li>
-                <li><a href="?r=blacklist">黑名单公司</a></li>
+                <li><a href="?r=black-list">黑名单公司</a></li>
             </ul>
         </div>
     </div>

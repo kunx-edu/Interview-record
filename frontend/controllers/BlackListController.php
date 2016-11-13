@@ -18,6 +18,10 @@ class BlackListController extends BaseController
 {
     public function actionIndex()
     {
+        $keyword = Yii::$app->request->get('keyword');
 
+        //查询黑名单.
+
+        return $this->render('index', ['keyword'=>$keyword]);
     }
 }

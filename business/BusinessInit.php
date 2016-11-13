@@ -18,6 +18,7 @@ class BusinessInit {
         $this->classService();
         $this->interviewService();
         $this->trainService();
+        $this->blacklistService();
     }
 
     private function studentService()
@@ -38,5 +39,10 @@ class BusinessInit {
     private function trainService()
     {
         Yii::$container->setSingleton('Train.TrainService', 'business\trainService\service\TrainService');
+    }
+
+    private function blacklistService()
+    {
+        Yii::$container->setSingleton('blacklist.blacklistService', 'business\blacklistService\service\blacklistService');
     }
 }
