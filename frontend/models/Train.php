@@ -1,0 +1,48 @@
+<?php
+
+namespace frontend\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "train".
+ *
+ * @property integer $id
+ * @property string $train_name
+ * @property integer $is_delete
+ * @property integer $is_validate
+ */
+class Train extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'train';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['is_delete', 'is_validate'], 'integer'],
+            [['train_name'], 'string', 'max' => 40],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'train_name' => 'Train Name',
+            'is_delete' => 'Is Delete',
+            'is_validate' => 'Is Validate',
+        ];
+    }
+}

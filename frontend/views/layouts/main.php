@@ -36,7 +36,7 @@ AppAsset::register($this);
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="?r=interview">面试信息</a></li>
-                <li><a href="#">培训公司</a></li>
+                <li><a href="?r=train">培训公司</a></li>
                 <li><a href="#">黑名单公司</a></li>
             </ul>
         </div>
