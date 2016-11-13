@@ -19,11 +19,30 @@ class ManageController extends BaseManageController
 {
     public function actionIndex()
     {
-        $keyword = Yii::$app->request->get('keyword');
+        $this->layout = 'manage';
+        return $this->render('index');
     }
 
-    public function actionLogin()
+    public function actionBlackList()
     {
-        return $this->render('login');
+        $this->layout = 'manage';
+        $keyword = Yii::$app->request->get('keyword');
+
+        //查询黑名单.
+        $arr = Helper::getService('blacklist.blacklist')->getBlacklist($keyword);
+
+        return $this->render('black-list-index', ['keyword'=>$keyword, 'arr'=>$arr]);
     }
+    public function actionTrain()
+    {
+        $this->layout = 'manage';
+        //接收传递过来的关键字.
+        $keyword = Yii::$app->request->get('keyword');
+
+        //查询所有的培训机构.
+        $res = Helper::getService('Train.Train')->getTrainAll($keyword);
+
+        return $this->render('train-index', ['keyword'=>$keyword, 'arr'=>$res]);
+    }
+
 }
