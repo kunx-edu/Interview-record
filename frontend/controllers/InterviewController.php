@@ -147,6 +147,7 @@ class InterviewController extends BaseController
             'arr'=>$res,
             'pages'=>$pages,
             'id'=>Yii::$app->session->get('student')['id'],
+            'keyword' => $keyword
         ]);
     }
 }

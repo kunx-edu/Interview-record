@@ -19,7 +19,7 @@
         <!--查询条件-->
             <?= Html::beginForm('?r=interview/search','get', ['class'=>'form-inline']);?>
             <div class="form-group">
-                <input type="text" name="keyword" size="18" class="form-control ma-right" placeholder="公司名称">
+                <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="form-control ma-right" placeholder="公司名称">
                 <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
                 <a class="btn btn-primary" href="?r=index" target="_blank">添加面试记录</a>
             </div>
