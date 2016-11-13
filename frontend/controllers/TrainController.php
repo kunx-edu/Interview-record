@@ -49,5 +49,9 @@ class TrainController extends BaseController
         $data = Yii::$app->request->getBodyParams();
 
         $model = new Train();
+
+        if ($model->load($data) && $model->add($data)) {
+            
+        }
     }
 }

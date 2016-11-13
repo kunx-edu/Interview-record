@@ -61,8 +61,6 @@ class Train extends \yii\db\ActiveRecord
         }
         $sql .= " AND `is_delete` = 0 AND `is_validate` = 1";
 
-//        echo $sql;
-//        exit;
         $res = Yii::$app->db->createCommand($sql)->queryAll();
         return $res;
     }
