@@ -66,7 +66,22 @@ class InterviewController extends BaseController
         } else {
             var_dump($model->getErrors());
         }
+    }
 
-
+    /**
+     * 上传录音文件.
+     * @return string
+     * @throws \yii\base\Exception
+     */
+    public function actionUploadTape()
+    {
+        $upload = UploadFactoryHelper::Factory();
+        $arr = $upload->uploadOne('sound_recording_file', ['.amr','.wav']);
+        var_dump($arr);
+//        if ($arr['status']) {
+//            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url']]);
+//        } else {
+//            return json_encode(['status'=>'error', 'message'=>$arr['message']]);
+//        }
     }
 }

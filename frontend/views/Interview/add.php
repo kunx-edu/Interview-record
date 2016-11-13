@@ -74,21 +74,18 @@
         <div class="form-group">
             <label for="is_written_examination">上传笔试题照片</label>
             <br/>
-            <button class="btn"type="button" id="upload_file">点击上传文件</button>
+            <button class="btn"type="button" id="upload_file">点击上传图片</button>
             <div class="img-up"></div>
             <ul class="file-imgList">
             </ul>
             <div class="help-block hide" id="is_written_examination_err"></div>
         </div>
 
-<!--        <div class="form-group">-->
-<!--            <label for="is_written_examination">上传录音文件</label><br/>-->
-<!--            <div class="layui-box layui-upload-button">-->
-<!---->
-<!--                <span class="layui-upload-icon"><i class="icon-cloud-upload"></i>选择录音文件</span>-->
-<!--            </div>-->
-<!--            <div class="help-block hide" id="is_written_examination_err"></div>-->
-<!--        </div>-->
+        <div class="form-group">
+            <label for="sound_recording_file">上传录音文件</label><br/>
+            <button class="btn"type="button" id="sound_recording_file">点击上传录音</button>
+            <div class="help-block hide" id="sound_recording_file_err"></div>
+        </div>
 
         <div class="form-group">
             <label for="grade">面试评分</label>
@@ -102,5 +99,9 @@
 
     <?= Html::beginForm('?r=interview/upload','post',['enctype'=>'multipart/form-data','id'=>'up']);?>
         <input type="file" id="in_file" name="in_photo" style="display: none">
+    <?= Html::endForm();?>
+
+    <?= Html::beginForm('?r=interview/upload-tape','post',['enctype'=>'multipart/form-data','id'=>'tape']);?>
+        <input type="file" id="tape_file" name="sound_recording_file" style="display: none">
     <?= Html::endForm();?>
 </div>

@@ -27,13 +27,30 @@ class InterviewService  extends BaseService implements IInterviewService
             //开启事物因为要操作多张表.
             //1.添加面试信息.
             $interview = new Interview();
-            $interview->addInterview($data['Interview']);
+            $id = $interview->addInterview($data['Interview']);
             //2.添加面试题图片.
             //判断是否有上传面试题图片.
             if (!empty($data['InterviewQuestionsPhoto'])) {
-                $interviewPhoto = new InterviewQuestionsPhoto();
-                $interviewPhoto->setAttributes($data['InterviewQuestionsPhoto']);
-                $interviewPhoto->save();
+
+                $session = Yii::$app->session->get('student');
+
+                //组装数据.
+                $data['InterviewQuestionsPhoto']['student_id'] = $session['id'];
+                $data['InterviewQuestionsPhoto']['interview_id'] = $id;
+
+                foreach ($data['InterviewQuestionsPhoto']['url'] as $K => $v) {
+
+                    $interviewPhoto = new InterviewQuestionsPhoto();
+
+                    //组装数据.
+                    $arr = [
+                        'url'          => $v,
+                        'student_id'   => Yii::$app->session->get('student')['id'],
+                        'interview_id' => $id,
+                    ];
+
+                    $interviewPhoto->addIntervicePhoto($arr);
+                }
             }
             //3添加录音文件.
 

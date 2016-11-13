@@ -43,7 +43,7 @@ class UpYunHelper extends BaseUploadHelper
     public function uploadOne($name, $fixs = ['.png','.jpg','.jpeg','.gif'])
     {
         //判断文件是否超过大小.
-//        var_dump($_FILES);exit;
+//        var_dump($fixs);exit;
         if ($_FILES[$name]['error'] == 1) {
             return ['status'=>false,'message'=>"文件太大无法上传"];
         }

@@ -28,7 +28,7 @@ class InterviewQuestionsPhoto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
+//            [['id'], 'required'],
             [['id', 'student_id', 'interview_id'], 'integer'],
             [['url'], 'string', 'max' => 255],
         ];
@@ -45,5 +45,16 @@ class InterviewQuestionsPhoto extends \yii\db\ActiveRecord
             'student_id' => 'Student ID',
             'interview_id' => 'Interview ID',
         ];
+    }
+
+    /**
+     * 添加图片.
+     * @param $data
+     * @return mixed
+     */
+    public function addIntervicePhoto($data)
+    {
+        $this->setAttributes($data);
+        return $this->save();
     }
 }

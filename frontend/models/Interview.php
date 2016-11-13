@@ -87,9 +87,6 @@ class Interview extends \yii\db\ActiveRecord
 
             //保存面试记录到数据库.
             $res = Helper::getService('Interview.Interview')->addInterview($data);
-
-//            var_dump($res);
-//            exit;
             return $res;
 
         } else {
