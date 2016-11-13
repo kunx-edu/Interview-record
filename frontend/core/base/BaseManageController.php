@@ -11,7 +11,7 @@ namespace frontend\core\base;
 use common\core\base\Controller;
 use frontend\core\filters\ManageFilters;
 
-class BaseController extends Controller
+class BaseManageController extends Controller
 {
     public function behaviors()
     {

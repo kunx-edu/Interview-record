@@ -19,7 +19,7 @@ class ManageFilters extends ActionFilter
         $session = Helper::getSession('manage');
 
         if (empty($session)) {
-            return Helper::redirect('?r=manage/login');
+            return Helper::redirect('?r=manage-login');
         }
 
         return parent::beforeAction($action);

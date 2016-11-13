@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use common\core\base\Controller;
 use common\helper\Helper;
-use frontend\core\base\BaseController;
+use frontend\core\base\BaseManageController;
 use frontend\models\Blacklist;
 use frontend\models\Train;
 use Yii;
@@ -15,35 +15,15 @@ use Yii;
  * Class TrainController
  * @package frontend\controllers
  */
-class ManageController extends BaseController
+class ManageController extends BaseManageController
 {
     public function actionIndex()
     {
         $keyword = Yii::$app->request->get('keyword');
-
-        //查询黑名单.
-        $arr = Helper::getService('blacklist.blacklist')->getBlacklist($keyword);
-
-        return $this->render('index', ['keyword'=>$keyword, 'arr'=>$arr]);
     }
 
-    public function actionAdd()
+    public function actionLogin()
     {
-        $model = new Blacklist();
-        return $this->render('add', ['model'=>$model]);
-    }
-
-    public function actionAddBlackList()
-    {
-        //接收发送过来的数据.
-        $data = Yii::$app->request->getBodyParams();
-
-        $model = new Blacklist();
-
-        if ($model->load($data) && $model->add($data)) {
-            return json_encode(['status'=>'success','data'=>$model->getErrors()]);
-        } else {
-            return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
-        }
+        return $this->render('login');
     }
 }
