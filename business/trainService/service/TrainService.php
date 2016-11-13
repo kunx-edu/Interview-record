@@ -30,4 +30,40 @@ class TrainService extends BaseService implements ITrainService{
             return false;
         }
     }
+
+    /**
+     * 根据名称来查询.
+     * @param $train_name
+     * @return mixed
+     */
+    public function getTrain($train_name)
+    {
+        try{
+
+            $model = new Train();
+            $res = $model->getTrain($train_name);
+            return $res;
+        } catch(Exception $e) {
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 添加到数据库.
+     * @param $data
+     * @return mixed
+     */
+    public function add($data)
+    {
+        try{
+            $model = new Train();
+            $model->setAttributes($data);
+            $model->save();
+            return $model->getPrimaryKey();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

@@ -1,11 +1,12 @@
 <?php
 $this->title = "添加培训机构";
 use \yii\helpers\Html;
-\frontend\assets\RegisterAsset::register($this);
+\frontend\assets\TrainAsset::register($this);
+\frontend\assets\LayerAsset::register($this);
 ?>
 <div class="container">
     <div class="col-md-4"></div>
-    <?= Html::beginForm('?r=reg', 'post')?>
+    <?= Html::beginForm('?r=train/add-train', 'post')?>
     <div class="col-md-4">
         <h1 align="center">添加培训机构</h1>
         <div class="form-group col-md-12">

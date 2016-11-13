@@ -64,4 +64,15 @@ class Train extends \yii\db\ActiveRecord
         $res = Yii::$app->db->createCommand($sql)->queryAll();
         return $res;
     }
+
+    /**
+     * 根据名称来查询.
+     * @param $tran_name
+     * @return null|static
+     */
+    public function getTrain($tran_name)
+    {
+        $res = $this->findOne(['train_name'=>$tran_name, 'is_validate'=>1, 'is_delete'=>0]);
+        return $res;
+    }
 }

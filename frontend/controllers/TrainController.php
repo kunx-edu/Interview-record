@@ -51,7 +51,9 @@ class TrainController extends BaseController
         $model = new Train();
 
         if ($model->load($data) && $model->add($data)) {
-            
+            return json_encode(['status'=>'success','data'=>$model->getErrors()]);
+        } else {
+            return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
         }
     }
 }

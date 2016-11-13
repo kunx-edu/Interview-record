@@ -13,6 +13,6 @@ class TrainAsset extends AppAsset
 
     ];
     public $js = [
-        'train.js',
+        'js/train.js',
     ];
 }
