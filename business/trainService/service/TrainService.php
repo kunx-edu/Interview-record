@@ -58,7 +58,9 @@ class TrainService extends BaseService implements ITrainService{
     {
         try{
             $model = new Train();
-            $model->setAttributes($data);
+            $data['Train']['is_delete'] = 0;
+            $data['Train']['is_validate'] = 0;
+            $model->setAttributes($data['Train']);
             $model->save();
             return $model->getPrimaryKey();
         }catch (Exception $e){

@@ -4,7 +4,7 @@ $(function(){
         $.post('?r=train/add-train', $('form').serialize(), function(data){
             //判断是否成功.
             if (data.status == 'success') {
-                layer.msg('添加成功');
+                layer.msg('添加成功, 等待管理员审核');
                 setTimeout(function(){
                     window.location.href="?r=train";
                 },2000)
