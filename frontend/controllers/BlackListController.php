@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\core\base\Controller;
 use common\helper\Helper;
 use frontend\core\base\BaseController;
+use frontend\models\Blacklist;
 use frontend\models\Train;
 use Yii;
 
@@ -24,5 +25,11 @@ class BlackListController extends BaseController
         $arr = Helper::getService('blacklist.blacklist')->getBlacklist($keyword);
 
         return $this->render('index', ['keyword'=>$keyword, 'arr'=>$arr]);
+    }
+
+    public function actionAdd()
+    {
+        $model = new Blacklist();
+        return $this->render('add', ['model'=>$model]);
     }
 }

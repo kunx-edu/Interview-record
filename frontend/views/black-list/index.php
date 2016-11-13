@@ -21,7 +21,7 @@ use yii\helpers\Html;
     <div class="form-group">
         <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="form-control ma-right" placeholder="公司名称">
         <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
-        <a class="btn btn-primary" href="?r=train/add" target="_blank">添加黑名单</a>
+        <a class="btn btn-primary" href="?r=black-list/add" target="_blank">添加黑名单</a>
     </div>
     <?= Html::endForm(); ?>
 </div>
