@@ -18,6 +18,7 @@ class InterviewController extends BaseController
 {
     public function actionIndex()
     {
+        $keyword = Yii::$app->request->get('keyword');
         //获取当前第几页.
         $pageNow = Yii::$app->request->get('page');
         if (empty($pageNow)) {
@@ -37,6 +38,7 @@ class InterviewController extends BaseController
             'arr'=>$res,
             'pages'=>$pages,
             'id'=>Yii::$app->session->get('student')['id'],
+            'keyword'=>$keyword,
         ]);
     }
 

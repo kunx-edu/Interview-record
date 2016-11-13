@@ -21,7 +21,8 @@ class BlackListController extends BaseController
         $keyword = Yii::$app->request->get('keyword');
 
         //查询黑名单.
+        $arr = Helper::getService('blacklist.blacklist')->getBlacklist($keyword);
 
-        return $this->render('index', ['keyword'=>$keyword]);
+        return $this->render('index', ['keyword'=>$keyword, 'arr'=>$arr]);
     }
 }

@@ -1,25 +1,25 @@
 <?php
 
-namespace business\blocklistService\model;
+namespace business\blacklistService\model;
 
 use Yii;
 
 /**
- * This is the model class for table "blocklist".
+ * This is the model class for table "blacklist".
  *
  * @property integer $id
  * @property string $name
  * @property integer $is_delete
  * @property integer $is_validate
  */
-class Blocklist extends \yii\db\ActiveRecord
+class Blacklist extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'blocklist';
+        return 'blacklist';
     }
 
     /**
@@ -44,5 +44,24 @@ class Blocklist extends \yii\db\ActiveRecord
             'is_delete' => 'Is Delete',
             'is_validate' => 'Is Validate',
         ];
+    }
+
+    /**
+     * 查询列表.
+     * @param $keyword
+     * @return array
+     */
+    public function getBlackList($keyword)
+    {
+        $sql = 'SELECT * FROM `blacklist` WHERE 1 = 1 ';
+
+
+        if (!empty($keyword)) {
+            $sql .= " AND  `name` LIKE '%".$keyword."%'";
+        }
+        $sql .= " AND `is_delete` = 0 AND `is_validate` = 1";
+
+        $res = Yii::$app->db->createCommand($sql)->queryAll();
+        return $res;
     }
 }

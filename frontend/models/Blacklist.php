@@ -5,21 +5,21 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "blocklist".
+ * This is the model class for table "blacklist".
  *
  * @property integer $id
  * @property string $name
  * @property integer $is_delete
  * @property integer $is_validate
  */
-class Blocklist extends \yii\db\ActiveRecord
+class Blacklist extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'blocklist';
+        return 'blacklist';
     }
 
     /**

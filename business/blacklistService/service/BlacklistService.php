@@ -4,6 +4,7 @@
  */
 namespace business\blacklistService\service;
 
+use business\blacklistService\model\Blacklist;
 use business\classService\model\ClassForm;
 use business\common\BaseService;
 use business\interFaces\blacklistInterFace\IBlacklistService;
@@ -17,8 +18,15 @@ class BlacklistService extends BaseService implements IBlacklistService
      * 查询黑名单公司列表.
      * @return mixed
      */
-    public function getBlockList()
+    public function getBlackList($keyword)
     {
-        // TODO: Implement getBlockList() method.
+        try{
+            $model = new Blacklist();
+            $res = $model->getBlackList($keyword);
+            return $res;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
     }
 }

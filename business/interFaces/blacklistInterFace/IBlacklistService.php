@@ -11,6 +11,6 @@ interface IBlacklistService {
      * 查询黑名单公司列表.
      * @return mixed
      */
-    public function getBlockList();
+    public function getBlackList($keyword);
 
 }

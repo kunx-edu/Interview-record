@@ -17,7 +17,7 @@ use yii\helpers\Html;
 </style>
 <div class="search-box">
     <!--查询条件-->
-    <?= Html::beginForm('?r=block-list/index','get', ['class'=>'form-inline']);?>
+    <?= Html::beginForm('?r=black-list/index','get', ['class'=>'form-inline']);?>
     <div class="form-group">
         <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="form-control ma-right" placeholder="公司名称">
         <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
@@ -38,7 +38,7 @@ use yii\helpers\Html;
         foreach ($arr as $K => $v) {
             echo '<tr>';
             echo '<td>'.$v['id'].'</td>';
-            echo '<td>'.$v['train_name'].'</td>';
+            echo '<td>'.$v['name'].'</td>';
             echo '</tr>';
         }
     } else {
