@@ -21,7 +21,10 @@ class TrainController extends BaseController
     public function actionIndex()
     {
         //接收传递过来的关键字.
-        $keyword =
-        return $this->render('index');
+        $keyword = Yii::$app->request->get('keyword');
+
+        //查询所有的培训机构.
+
+        return $this->render('index', ['keyword'=>$keyword]);
     }
 }
