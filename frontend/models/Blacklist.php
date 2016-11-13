@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use common\helper\Helper;
 
 /**
  * This is the model class for table "blacklist".
@@ -28,8 +29,8 @@ class Blacklist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_delete', 'is_validate'], 'integer'],
-            [['name'], 'string', 'max' => 30],
+            ['name','required','message'=>'公司名称不能为空'],
+            ['name','CheckName'],
         ];
     }
 
@@ -44,5 +45,32 @@ class Blacklist extends \yii\db\ActiveRecord
             'is_delete' => 'Is Delete',
             'is_validate' => 'Is Validate',
         ];
+    }
+
+    public function add($data)
+    {
+        if ($this->validate()) {
+
+            $res = Helper::getService('blacklist.blacklist')->add($data['Blacklist']);
+
+            if ($res) {
+                return true;
+            } else {
+                $this->addError('name', '添加失败');
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function CheckName($attribute)
+    {
+        //查询是否已经存在.
+        $res = Helper::getService('blacklist.blacklist')->getBlack($this->$attribute);
+
+        if (!empty($res)) {
+            $this->addError('name', '该公司已经存在');
+        }
     }
 }

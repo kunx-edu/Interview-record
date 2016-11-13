@@ -64,4 +64,15 @@ class Blacklist extends \yii\db\ActiveRecord
         $res = Yii::$app->db->createCommand($sql)->queryAll();
         return $res;
     }
+
+    /**
+     * 查询公司是否已经存在.
+     * @param $name
+     * @return $this
+     */
+    public function getBlack($name)
+    {
+        $res = $this->find()->where(['name'=>$name,'is_delete'=>0, 'is_validate'=>1])->asArray()->all();
+        return $res;
+    }
 }

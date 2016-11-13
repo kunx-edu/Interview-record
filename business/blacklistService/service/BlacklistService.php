@@ -29,4 +29,41 @@ class BlacklistService extends BaseService implements IBlacklistService
             return false;
         }
     }
+
+    /**
+     * 查询是否已经存在.
+     * @param $name
+     * @return mixed
+     */
+    public function getBlack($name)
+    {
+        try{
+
+            $model = new Blacklist();
+            $res = $model->getBlack($name);
+            return $res;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 添加黑名单公司的方法.
+     * @param $data
+     * @return bool|mixed
+     */
+    public function add($data)
+    {
+        try{
+            $model = new Blacklist();
+            $model->setAttributes($data);
+            $model->save();
+            $id = $model->getPrimaryKey();
+            return $id;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

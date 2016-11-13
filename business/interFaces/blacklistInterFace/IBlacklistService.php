@@ -13,4 +13,11 @@ interface IBlacklistService {
      */
     public function getBlackList($keyword);
 
+    /**
+     * 查询是否已经存在.
+     * @param $name
+     * @return mixed
+     */
+    public function getBlack($name);
+
 }

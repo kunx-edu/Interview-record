@@ -15,7 +15,7 @@ use Yii;
  * Class TrainController
  * @package frontend\controllers
  */
-class BlackListController extends BaseController
+class ManageController extends BaseController
 {
     public function actionIndex()
     {
