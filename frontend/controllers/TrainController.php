@@ -3,7 +3,9 @@
 namespace frontend\controllers;
 
 use common\core\base\Controller;
+use common\helper\Helper;
 use frontend\core\base\BaseController;
+use frontend\models\Train;
 use Yii;
 
 
@@ -24,7 +26,24 @@ class TrainController extends BaseController
         $keyword = Yii::$app->request->get('keyword');
 
         //查询所有的培训机构.
+        $res = Helper::getService('Train.Train')->getTrainAll($keyword);
 
-        return $this->render('index', ['keyword'=>$keyword]);
+        return $this->render('index', ['keyword'=>$keyword, 'arr'=>$res]);
+    }
+
+    /**
+     * 添加培训机构.
+     */
+    public function actionAdd()
+    {
+        $model = new Train();
+        return $this->render('add', ['model'=>$model]);
+    }
+
+    /**
+     * 添加培训公司的主方法.
+     */
+    public function actionAddTrain(){
+
     }
 }

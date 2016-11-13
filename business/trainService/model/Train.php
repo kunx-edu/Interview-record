@@ -45,4 +45,25 @@ class Train extends \yii\db\ActiveRecord
             'is_validate' => 'Is Validate',
         ];
     }
+
+    /**
+     * 查询数据.
+     * @param $keyword
+     * @return array
+     */
+    public function getTrainAll($keyword)
+    {
+        $sql = 'SELECT * FROM `train` WHERE 1 = 1 ';
+
+
+        if (!empty($keyword)) {
+            $sql .= " AND  `train_name` LIKE '%".$keyword."%'";
+        }
+        $sql .= " AND `is_delete` = 0 AND `is_validate` = 1";
+
+//        echo $sql;
+//        exit;
+        $res = Yii::$app->db->createCommand($sql)->queryAll();
+        return $res;
+    }
 }

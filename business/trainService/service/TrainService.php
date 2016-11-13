@@ -5,7 +5,7 @@
  * Date: 2016/11/13
  * Time: 17:54
  */
-namespace business\studentService\service;
+namespace business\trainService\service;
 use business\common\BaseService;
 use business\interFaces\trainInterFace\ITrainService;
 use business\trainService\model\Train;

@@ -1,5 +1,5 @@
 <?php
-$this->title = "面试信息";
+$this->title = "培训机构";
 use yii\widgets\LinkPager;
 use yii\helpers\Html;
 ?>
@@ -21,7 +21,7 @@ use yii\helpers\Html;
     <div class="form-group">
         <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="form-control ma-right" placeholder="公司名称">
         <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
-        <a class="btn btn-primary" href="?r=index" target="_blank">添加面试记录</a>
+        <a class="btn btn-primary" href="?r=train/add" target="_blank">添加培训机构</a>
     </div>
     <?= Html::endForm(); ?>
 </div>
@@ -30,16 +30,21 @@ use yii\helpers\Html;
     <tr>
         <th>#</th>
         <th>公司名称</th>
-        <th>公司地址</th>
-        <th>公司评分</th>
-        <th>公司类型</th>
-        <th>面试者</th>
-        <th>要求薪水</th>
-        <th>面试时间</th>
-        <th>操作</th>
     </tr>
     </thead>
     <tbody>
+    <?php
+        if (!empty($arr)) {
+            foreach ($arr as $K => $v) {
+                echo '<tr>';
+                echo '<td>'.$v['id'].'</td>';
+                echo '<td>'.$v['train_name'].'</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="2" align="center">暂时没有数据</td></tr>';
+        }
+    ?>
     </tbody>
 
 </table>

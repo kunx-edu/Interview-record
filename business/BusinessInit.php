@@ -17,6 +17,7 @@ class BusinessInit {
         $this->studentService();
         $this->classService();
         $this->interviewService();
+        $this->trainService();
     }
 
     private function studentService()
@@ -32,5 +33,10 @@ class BusinessInit {
     private function interviewService()
     {
         Yii::$container->setSingleton('Interview.InterviewService', 'business\interviewService\service\InterviewService');
+    }
+
+    private function trainService()
+    {
+        Yii::$container->setSingleton('Train.TrainService', 'business\trainService\service\TrainService');
     }
 }
