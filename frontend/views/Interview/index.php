@@ -1,5 +1,6 @@
 <?php
     $this->title = "面试信息";
+use yii\widgets\LinkPager;
 ?>
 <style>
     .search-box{
@@ -38,17 +39,25 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1</td>
-        <td>睿启新科技有限公司</td>
-        <td>高新区</td>
-        <td>3.5</td>
-        <td>自主产品</td>
-        <td>侯老司机</td>
-        <td>10000</td>
-        <td>2016-11-09</td>
-        <td>详情 删除 修改</td>
-    </tr>
+    <?php
+        if (!empty($arr)) {
+
+            foreach ($arr as $k=> $v) {
+                echo '<tr>';
+                echo '<td>'.$v['id'].'</td>';
+                echo '<td>'.$v['company_name'].'</td>';
+                echo '<td>'.$v['company_address'].'</td>';
+                echo '<td>'.$v['grade'].'</td>';
+                echo '<td>'.$v['company_type'].'</td>';
+                echo '<td>'.$v['username'].'</td>';
+                echo '<td>'.$v['salary'].'</td>';
+                echo '<td>'.$v['interview_time'].'</td>';
+                echo '<td>详情 删除 修改</td>';
+                echo '</tr>';
+            }
+        }
+    ?>
     </tbody>
 
 </table>
+<div class="container" style="text-align: center;"><?= LinkPager::widget(['pagination' => $pages]); ?></div>

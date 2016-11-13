@@ -7,6 +7,7 @@ use frontend\models\ClassForm;
 use frontend\models\Interview;
 use frontend\models\InterviewQuestionsPhoto;
 use Yii;
+use yii\data\Pagination;
 
 /**
  * 面试信息.
@@ -17,7 +18,21 @@ class InterviewController extends BaseController
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        //获取当前第几页.
+        $pageNow = Yii::$app->request->get('page');
+        if (empty($pageNow)) {
+            $pageNow = 1;
+        }
+
+        //获取分页总条数.
+        $rst = Helper::getService('Interview.Interview')->getInterviewCount();
+
+        //查询面试数据.
+        $res = Helper::getService('Interview.Interview')->getInterviewAll($pageNow);
+
+        $pages = new Pagination(['totalCount' => count($rst), 'pageSize' =>  Yii::$app->params['pageSize']]);
+
+        return $this->render('index', ['arr'=>$res, 'pages'=>$pages]);
     }
 
     /**
@@ -57,14 +72,16 @@ class InterviewController extends BaseController
         $data = Yii::$app->request->getBodyParams();
 
         //日期转换时间戳.
-        $data['Interview']['interview_time'] = strtotime($data['Interview']['interview_time']);
+        if (!empty($data['Interview']['interview_time'])) {
+            $data['Interview']['interview_time'] = strtotime($data['Interview']['interview_time']);
+        }
 
         $model = new Interview();
 
         if ($model->load($data) && $model->addInterview($data)) {
-            echo 'yes';
+            return json_encode(['status'=>'success', 'data'=>$model->getErrors()]);
         } else {
-            var_dump($model->getErrors());
+            return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
         }
     }
 
@@ -76,10 +93,9 @@ class InterviewController extends BaseController
     public function actionUploadTape()
     {
         $upload = UploadFactoryHelper::Factory();
-        $arr = $upload->uploadOne('sound_recording_file', ['.amr','.wav']);
-
+        $arr = $upload->uploadOne('sound_recording_file',['.amr','.wav']);
         if ($arr['status']) {
-            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url']]);
+            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url'], 'path'=>$arr['url']]);
         } else {
             return json_encode(['status'=>'error', 'message'=>$arr['message']]);
         }

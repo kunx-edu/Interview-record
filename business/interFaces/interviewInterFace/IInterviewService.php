@@ -12,4 +12,17 @@ interface IInterviewService {
      * @return mixed
      */
     public function addInterview($data);
+
+    /**
+     * 查询数据.
+     * @return mixed
+     */
+    public function getInterviewAll($pageNow);
+
+
+    /**
+     * 获取分页总条数.
+     * @return mixed
+     */
+    public function getInterviewCount();
 }

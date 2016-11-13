@@ -75,12 +75,14 @@ $(function(){
 
                     if (data.status === "success") {
                         //当上传成功,自动创建html
-                        $('<li>' +
-                        '<img src="' + data.url + '" alt=""/>' +
-                        '<span class="btn-closed">X</span>' +
-                        '</li>').appendTo($(".file-imgList"))
+                        //$('<li>' +
+                        //'<img src="' + data.url + '" alt=""/>' +
+                        //'<span class="btn-closed">X</span>' +
+                        //'</li>').appendTo($(".file-imgList"))
+                        $('.tape').append('<span><a href="'+data.url+'" target="_blank">录音文件</a></span>')
+                        $('#interview-sound_recording_file').val(data.path)
+                        layer.closeAll('loading');
 
-                        $('<input type="hidden" name="InterviewQuestionsPhoto[url][]" value="' + data.path + '" path="' + data.url + '">').appendTo($(".img-up"))
                     } else {
                         layer.msg(data.message);
                     }
@@ -94,6 +96,20 @@ $(function(){
                 async: true
             });
         }
+    })
+
+    $('#button_interview').on('click', function(){
+        $.post('?r=interview/add-interview', $('#interviewForm').serialize(), function(data){
+            if (data.status == 'success') {
+                window.location.href='?r=interview';
+            } else {
+                $.each(data.data, function(k, v){
+                    $('#'+k+'_err').html(v);
+                    $('#'+k+'_err').removeClass('hide');
+                    $('#'+k+'_err').css('color','red');
+                })
+            }
+        },'json');
     })
 })
 

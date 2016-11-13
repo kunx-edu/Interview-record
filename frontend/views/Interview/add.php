@@ -10,7 +10,7 @@
 <div class="container add">
     <h3 id="overview-doctype">添加面试记录</h3>
 <!--    <form action="?r=interview/adds" method="post">-->
-    <?=Html::beginForm('?r=interview/add-interview','post');?>
+    <?=Html::beginForm('?r=interview/add-interview','post',['id'=>'interviewForm']);?>
         <div class="form-group">
             <label for="company_name">公司名称</label>
             <?= Html::activeInput('text', $model, 'company_name',['class'=>"form-control", 'placeholder'=>'公司名称','id'=>"company_name"])?>
@@ -48,14 +48,14 @@
             <label for="salary">要求薪水</label>
             <div class="input-group"  style="height: 34px;">
                 <div class="input-group-addon addon" style="height: 34px;">￥</div>
-                <?= Html::activeInput('text', $model, 'salary',['class'=>"form-control", 'placeholder'=>'要求薪水','id'=>"salary"])?>
+                <?= Html::activeInput('number', $model, 'salary',['class'=>"form-control", 'placeholder'=>'要求薪水','id'=>"salary"])?>
             </div>
             <div class="help-block hide" id="salary_err"></div>
         </div>
 
         <div class="form-group">
             <label for="interview_time">面试时间</label>
-            <?=Html::activeInput('text', $model, 'interview_time',['class'=>'form-control', 'placeholder'=>'面试时间','id'=>"interview_time"])?>
+            <?=Html::activeInput('text', $model, 'interview_time',['class'=>'form-control', 'placeholder'=>'面试时间'])?>
             <div class="help-block hide" id="interview_time_err"></div>
         </div>
 
@@ -84,6 +84,7 @@
         <div class="form-group">
             <label for="sound_recording_file">上传录音文件</label><br/>
             <button class="btn"type="button" id="sound_recording_file">点击上传录音</button>
+            <p class="tape" style="margin-top: 20px;"></p>
             <?= Html::activeHiddenInput($model, 'sound_recording_file'); ?>
             <div class="help-block hide" id="sound_recording_file_err"></div>
         </div>
@@ -94,7 +95,7 @@
             <div class="help-block hide" id="grade_err"></div>
         </div>
 
-        <div class=" button"><button type="submit" class="btn btn-primary">提交</button></div>
+        <div class=" button"><button type="button" id="button_interview" class="btn btn-primary">提交</button></div>
 
     <?=Html::endForm();?>
 

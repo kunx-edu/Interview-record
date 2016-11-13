@@ -8,6 +8,7 @@ use business\common\BaseService;
 use business\interFaces\interviewInterFace\IInterviewService;
 use business\interviewService\model\Interview;
 use business\interviewService\model\InterviewQuestionsPhoto;
+use common\helper\Helper;
 use yii\base\Exception;
 use Yii;
 
@@ -27,6 +28,7 @@ class InterviewService  extends BaseService implements IInterviewService
             //开启事物因为要操作多张表.
             //1.添加面试信息.
             $interview = new Interview();
+            $data['Interview']['student_id'] = Yii::$app->session->get('student')['id'];
             $id = $interview->addInterview($data['Interview']);
             //2.添加面试题图片.
             //判断是否有上传面试题图片.
@@ -64,6 +66,44 @@ class InterviewService  extends BaseService implements IInterviewService
             Yii::error($e->getMessage());
             //回滚事物.
             $tran->rollBack();
+            return false;
+        }
+    }
+
+    /**
+     * 查询数据.
+     * @return mixed
+     */
+    public function getInterviewAll($pageNow)
+    {
+        try{
+            $interview = new Interview();
+            $res = $interview->getInterviewAll($pageNow);
+
+            foreach ($res as $k => $v) {
+                $res[$k]['grade'] = $v['grade'] / $v['count'];
+                $res[$k]['interview_time'] = date('Y-m-d',$v['grade']);
+                $res[$k]['company_type'] = Helper::changeCompanyType($v['company_type']);
+            }
+
+            return $res;
+        } catch (Exception $e) {
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 获取分页总条数.
+     * @return mixed
+     */
+    public function getInterviewCount()
+    {
+        try{
+            $interview = new Interview();
+            return $interview->getInterviewCount();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
             return false;
         }
     }

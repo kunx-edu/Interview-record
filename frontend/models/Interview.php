@@ -47,6 +47,7 @@ class Interview extends \yii\db\ActiveRecord
             ['interview_info','required','message'=>'面试记录不能为空'],
             ['is_written_examination','required','message'=>'是否有笔试不能为空'],
             ['grade','required','message'=>'面试评分不能为空'],
+            ['salary','required','message'=>'要求薪水不能为空'],
 //            [['company_name'], 'required'],
 //            [['company_type', 'interview_time', 'student_id', 'is_written_examination', 'is_delete'], 'integer'],
 //            [['interview_info'], 'string'],

@@ -44,4 +44,19 @@ class Helper {
         return Yii::$container->get($serviceName.'Service');
     }
 
+    /**
+     * 替换公司类型.
+     * @param $type
+     * @return string
+     */
+    public static function changeCompanyType($company_type)
+    {
+        $type = '';
+        switch($company_type) {
+            case '0' : $type = '外包公司'; break;
+            case '1' : $type = '自主产品'; break;
+        }
+        return $type;
+    }
+
 }

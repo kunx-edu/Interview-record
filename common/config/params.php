@@ -13,4 +13,5 @@ return [
         //操作密码.
         'upyun_operator_pwd' => 'haoyoufaner',
     ],
+    'pageSize' => 1,
 ];

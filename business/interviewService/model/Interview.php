@@ -3,6 +3,7 @@
 namespace business\interviewService\model;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "interview".
@@ -84,6 +85,59 @@ class Interview extends \yii\db\ActiveRecord
         $this->save();
         $id = $this->getPrimaryKey();
         return $id;
+    }
+
+    public function getInterviewAll($pageNow)
+    {
+        $sql = "
+                SELECT
+                    i.id,
+                    i.`company_name`,
+                    i.`company_address`,
+                    (
+                        SELECT SUM(`grade`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS grade,
+                    (
+                        SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS count,
+                    s.username,
+                    i.salary,
+                    i.interview_time,
+                    i.company_type
+                FROM
+                    `interview` AS i
+                LEFT JOIN `student` AS s ON i.student_id = s.id
+                LIMIT :pageNow, ".Yii::$app->params['pageSize'];
+        $res = Yii::$app->db->createCommand($sql)->bindValue(':pageNow', ($pageNow - 1) * Yii::$app->params['pageSize'])->queryAll();
+        return $res;
+    }
+
+    /**
+     * 获取分页总条数.
+     */
+    public function getInterviewCount()
+    {
+
+        $sql = "
+                SELECT
+                    i.id,
+                    i.`company_name`,
+                    i.`company_address`,
+                    (
+                        SELECT SUM(`grade`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS grade,
+                    (
+                        SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS count,
+                    s.username,
+                    i.salary,
+                    i.interview_time,
+                    i.company_type
+                FROM
+                    `interview` AS i
+                LEFT JOIN `student` AS s ON i.student_id = s.id";
+        $res = Yii::$app->db->createCommand($sql)->queryAll();
+        return $res;
     }
 
 }
