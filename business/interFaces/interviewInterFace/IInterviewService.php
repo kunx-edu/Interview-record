@@ -17,14 +17,14 @@ interface IInterviewService {
      * 查询数据.
      * @return mixed
      */
-    public function getInterviewAll($pageNow);
+    public function getInterviewAll($pageNow, $keyword);
 
 
     /**
      * 获取分页总条数.
      * @return mixed
      */
-    public function getInterviewCount();
+    public function getInterviewCount($keyword);
 
     /**
      * 根据id来查询.

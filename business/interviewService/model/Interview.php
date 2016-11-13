@@ -87,7 +87,7 @@ class Interview extends \yii\db\ActiveRecord
         return $id;
     }
 
-    public function getInterviewAll($pageNow)
+    public function getInterviewAll($pageNow, $keyword)
     {
         $sql = "
                 SELECT
@@ -107,8 +107,11 @@ class Interview extends \yii\db\ActiveRecord
                     i.company_type
                 FROM
                     `interview` AS i
-                LEFT JOIN `student` AS s ON i.student_id = s.id
-                LIMIT :pageNow, ".Yii::$app->params['pageSize'];
+                LEFT JOIN `student` AS s ON i.student_id = s.id";
+        if (!empty($keyword)) {
+            $sql .= " WHERE `company_name` LIKE '%".$keyword."%'";
+        }
+        $sql .= " LIMIT :pageNow, ".Yii::$app->params['pageSize'];
         $res = Yii::$app->db->createCommand($sql)->bindValue(':pageNow', ($pageNow - 1) * Yii::$app->params['pageSize'])->queryAll();
         return $res;
     }
@@ -116,7 +119,7 @@ class Interview extends \yii\db\ActiveRecord
     /**
      * 获取分页总条数.
      */
-    public function getInterviewCount()
+    public function getInterviewCount($keyword)
     {
 
         $sql = "
@@ -137,6 +140,9 @@ class Interview extends \yii\db\ActiveRecord
                 FROM
                     `interview` AS i
                 LEFT JOIN `student` AS s ON i.student_id = s.id";
+        if (!empty($keyword)) {
+            $sql .= " WHERE `company_name` LIKE '%".$keyword."%'";
+        }
         $res = Yii::$app->db->createCommand($sql)->queryAll();
         return $res;
     }
@@ -167,7 +173,10 @@ class Interview extends \yii\db\ActiveRecord
                     i.interview_time,
                     i.company_type,
                     i.occupation,
-                    i.class_id
+                    i.class_id,
+                    (
+                      SELECT `class_name` FROM `class` WHERE `id` = i.class_id
+                    ) AS `class_name`
                 FROM
                     `interview` AS i
                 LEFT JOIN `student` AS s ON i.student_id = s.id

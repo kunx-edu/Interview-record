@@ -1,6 +1,7 @@
 <?php
     $this->title = "面试信息";
     use yii\widgets\LinkPager;
+    use yii\helpers\Html;
 ?>
 <style>
     .search-box{
@@ -16,13 +17,13 @@
     </style>
     <div class="search-box">
         <!--查询条件-->
-        <form class="form-inline" id="onlineProSearch">
+            <?= Html::beginForm('?r=interview/search','get', ['class'=>'form-inline']);?>
             <div class="form-group">
                 <input type="text" size="18" class="form-control ma-right" placeholder="公司名称">
-                <button role="button" id="SeachButton" type="button"class="btn btn-primary">搜索</button>
+                <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
                 <a class="btn btn-primary" href="?r=index" target="_blank">添加面试记录</a>
             </div>
-        </form>
+        <?= Html::endForm(); ?>
     </div>
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
     <thead>

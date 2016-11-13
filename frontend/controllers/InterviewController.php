@@ -119,4 +119,34 @@ class InterviewController extends BaseController
 
         return $this->render('detail', ['arr'=>$arr]);
     }
+
+    /**
+     * 搜索功能.
+     */
+    public function actionSearch()
+    {
+        //获取传递过来的关键词.
+        $keyword = Yii::$app->request->get('keyword');
+
+        //获取当前第几页.
+        $pageNow = Yii::$app->request->get('page');
+        if (empty($pageNow)) {
+            $pageNow = 1;
+        }
+
+        //获取分页总条数.
+        $rst = Helper::getService('Interview.Interview')->getInterviewCount($keyword);
+
+        //查询面试数据.
+        $res = Helper::getService('Interview.Interview')->getInterviewAll($pageNow, $keyword);
+
+        $pages = new Pagination(['totalCount' => count($rst), 'pageSize' =>  Yii::$app->params['pageSize']]);
+
+        //获取当前登录用的id.
+        return $this->render('index', [
+            'arr'=>$res,
+            'pages'=>$pages,
+            'id'=>Yii::$app->session->get('student')['id'],
+        ]);
+    }
 }

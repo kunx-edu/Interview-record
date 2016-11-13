@@ -59,4 +59,18 @@ class Helper {
         return $type;
     }
 
+    /**
+     * 是否笔试.
+     * @param $type
+     */
+    public static function changeInterview($inter_type)
+    {
+        $type = '';
+        switch($inter_type) {
+            case '0' : $type = '没有笔试'; break;
+            case '1' : $type = '有笔试'; break;
+        }
+        return $type;
+    }
+
 }

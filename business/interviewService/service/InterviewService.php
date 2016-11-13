@@ -74,11 +74,11 @@ class InterviewService  extends BaseService implements IInterviewService
      * 查询数据.
      * @return mixed
      */
-    public function getInterviewAll($pageNow)
+    public function getInterviewAll($pageNow, $keyword= null)
     {
         try{
             $interview = new Interview();
-            $res = $interview->getInterviewAll($pageNow);
+            $res = $interview->getInterviewAll($pageNow, $keyword);
 
             foreach ($res as $k => $v) {
                 $res[$k]['grade'] = $v['grade'] / $v['count'];
@@ -97,11 +97,11 @@ class InterviewService  extends BaseService implements IInterviewService
      * 获取分页总条数.
      * @return mixed
      */
-    public function getInterviewCount()
+    public function getInterviewCount($keyword = null)
     {
         try{
             $interview = new Interview();
-            return $interview->getInterviewCount();
+            return $interview->getInterviewCount($keyword);
         }catch (Exception $e){
             Yii::error($e->getMessage());
             return false;
@@ -123,8 +123,23 @@ class InterviewService  extends BaseService implements IInterviewService
             $iq = new InterviewQuestionsPhoto();
             $arr = $iq->getPhotoById($id);
 
+            foreach ($arr as $k => $v) {
+                $arr[$k]['url'] = Yii::$app->params['upload_message']['visit_url'].$v['url'].'!small';
+                $arr[$k]['path'] = Yii::$app->params['upload_message']['visit_url'].$v['url'];
+            }
+
+            if (!empty($res['sound_recording_file'])) {
+                $res['sound_recording_file'] = Yii::$app->params['upload_message']['visit_url'].$res['sound_recording_file'];
+            }
+
             //将查询出来的图片添加到数数组中.
             $res['photo'] = $arr;
+
+            $res['company_type'] = Helper::changeCompanyType($res['company_type']);
+
+            $res['interview_time'] = date('Y-m-d', $res['interview_time']);
+
+            $res['is_written_examination'] = Helper::changeInterview($res['is_written_examination']);
 
             return $res;
         }catch (Exception $e){
