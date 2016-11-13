@@ -84,6 +84,7 @@
         <div class="form-group">
             <label for="sound_recording_file">上传录音文件</label><br/>
             <button class="btn"type="button" id="sound_recording_file">点击上传录音</button>
+            <?= Html::activeHiddenInput($model, 'sound_recording_file'); ?>
             <div class="help-block hide" id="sound_recording_file_err"></div>
         </div>
 

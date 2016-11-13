@@ -77,11 +77,11 @@ class InterviewController extends BaseController
     {
         $upload = UploadFactoryHelper::Factory();
         $arr = $upload->uploadOne('sound_recording_file', ['.amr','.wav']);
-        var_dump($arr);
-//        if ($arr['status']) {
-//            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url']]);
-//        } else {
-//            return json_encode(['status'=>'error', 'message'=>$arr['message']]);
-//        }
+
+        if ($arr['status']) {
+            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url']]);
+        } else {
+            return json_encode(['status'=>'error', 'message'=>$arr['message']]);
+        }
     }
 }
