@@ -57,4 +57,15 @@ class InterviewQuestionsPhoto extends \yii\db\ActiveRecord
         $this->setAttributes($data);
         return $this->save();
     }
+
+    /**
+     * 根据id查询面试题图片.
+     * @param $id
+     */
+    public function getPhotoById($id)
+    {
+        $sql = 'SELECT * FROM `interview_questions_photo` WHERE `interview_id` = :id';
+        $res = Yii::$app->db->createCommand($sql)->bindValue(':id',$id)->queryAll();
+        return $res;
+    }
 }

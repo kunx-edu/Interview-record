@@ -25,4 +25,11 @@ interface IInterviewService {
      * @return mixed
      */
     public function getInterviewCount();
+
+    /**
+     * 根据id来查询.
+     * @param $id
+     * @return mixed
+     */
+    public function getInterviewById($id);
 }

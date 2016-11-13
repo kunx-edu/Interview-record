@@ -101,6 +101,7 @@ class Interview extends \yii\db\ActiveRecord
                         SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
                     ) AS count,
                     s.username,
+                    i.student_id,
                     i.salary,
                     i.interview_time,
                     i.company_type
@@ -137,6 +138,41 @@ class Interview extends \yii\db\ActiveRecord
                     `interview` AS i
                 LEFT JOIN `student` AS s ON i.student_id = s.id";
         $res = Yii::$app->db->createCommand($sql)->queryAll();
+        return $res;
+    }
+
+    /**
+     * 根据id来查询.
+     * @param $id
+     * @return array|false
+     */
+    public function getInterviewById($id)
+    {
+        $sql = '
+                SELECT
+                    i.`company_name`,
+                    i.`company_address`,
+                    i.`sound_recording_file`,
+                    i.company_info,
+                    i.interview_info,
+                    i.is_written_examination,
+                    (
+                        SELECT SUM(`grade`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS grade,
+                    (
+                        SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
+                    ) AS count,
+                    s.username,
+                    i.salary,
+                    i.interview_time,
+                    i.company_type,
+                    i.occupation,
+                    i.class_id
+                FROM
+                    `interview` AS i
+                LEFT JOIN `student` AS s ON i.student_id = s.id
+                WHERE i.id = :id';
+        $res = Yii::$app->db->createCommand($sql)->bindValue(':id', $id)->queryOne();
         return $res;
     }
 

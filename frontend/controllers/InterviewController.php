@@ -32,7 +32,12 @@ class InterviewController extends BaseController
 
         $pages = new Pagination(['totalCount' => count($rst), 'pageSize' =>  Yii::$app->params['pageSize']]);
 
-        return $this->render('index', ['arr'=>$res, 'pages'=>$pages]);
+        //获取当前登录用的id.
+        return $this->render('index', [
+            'arr'=>$res,
+            'pages'=>$pages,
+            'id'=>Yii::$app->session->get('student')['id'],
+        ]);
     }
 
     /**
@@ -99,5 +104,19 @@ class InterviewController extends BaseController
         } else {
             return json_encode(['status'=>'error', 'message'=>$arr['message']]);
         }
+    }
+
+    /**
+     * 详细.
+     */
+    public function actionDetail()
+    {
+        //获取传递过来的id.
+        $id = Yii::$app->request->get('id');
+
+        //根据id来查询.
+        $arr = Helper::getService('Interview.Interview')->getInterviewById($id);
+
+        return $this->render('detail', ['arr'=>$arr]);
     }
 }

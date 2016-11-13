@@ -1,6 +1,6 @@
 <?php
     $this->title = "面试信息";
-use yii\widgets\LinkPager;
+    use yii\widgets\LinkPager;
 ?>
 <style>
     .search-box{
@@ -52,7 +52,13 @@ use yii\widgets\LinkPager;
                 echo '<td>'.$v['username'].'</td>';
                 echo '<td>'.$v['salary'].'</td>';
                 echo '<td>'.$v['interview_time'].'</td>';
-                echo '<td>详情 删除 修改</td>';
+                echo '<td><a href="?r=interview/detail&id='.$v['id'].'" trange="_blank">详情</a>';
+                if ($v['student_id'] == $id) {
+                    echo '<a href="?r=interview/del&id='.$v['id'].'">删除</a></td>';
+                } else {
+                    echo '</td>';
+                }
+
                 echo '</tr>';
             }
         }

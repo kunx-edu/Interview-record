@@ -107,4 +107,29 @@ class InterviewService  extends BaseService implements IInterviewService
             return false;
         }
     }
+
+    /**
+     * 根据id来查询.
+     * @param $id
+     * @return mixed
+     */
+    public function getInterviewById($id)
+    {
+        try{
+            $interview = new Interview();
+            $res = $interview->getInterviewById($id);
+
+            //查询图片.
+            $iq = new InterviewQuestionsPhoto();
+            $arr = $iq->getPhotoById($id);
+
+            //将查询出来的图片添加到数数组中.
+            $res['photo'] = $arr;
+
+            return $res;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }
