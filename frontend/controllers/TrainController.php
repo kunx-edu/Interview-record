@@ -43,7 +43,11 @@ class TrainController extends BaseController
     /**
      * 添加培训公司的主方法.
      */
-    public function actionAddTrain(){
+    public function actionAddTrain()
+    {
+        //接收发送过来的数据.
+        $data = Yii::$app->request->getBodyParams();
 
+        $model = new Train();
     }
 }
