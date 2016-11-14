@@ -72,4 +72,20 @@ class ManageService extends BaseService implements IManageService
             return false;
         }
     }
+
+    /**
+     * 根据id来查询数据.
+     * @param $id
+     * @return mixed
+     */
+    public function getManageById($id)
+    {
+        try{
+            $arr = Manage::find()->where(['id'=>$id])->asArray()->one();
+            return $arr;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

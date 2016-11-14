@@ -30,6 +30,7 @@ class Manage extends \yii\db\ActiveRecord
         return [
             [['username'], 'string', 'max' => 20],
             [['password'], 'string', 'max' => 32],
+            [['mobile'], 'string', 'max' => 11],
         ];
     }
 

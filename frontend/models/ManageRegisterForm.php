@@ -77,6 +77,24 @@ class ManageRegisterForm extends \yii\db\ActiveRecord
         }
     }
 
+    public function updateData($data)
+    {
+        if ($this->validate()) {
+
+            $res = Helper::getService('Manage.Manage')->add($data['ManageRegisterForm']);
+
+            if (!$res) {
+                $this->add('username', '添加失败');
+                return false;
+            }
+
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
     public function CheckUsername($attribute)
     {
         $res = Helper::getService('Manage.Manage')->getManageByUsername($this->$attribute);

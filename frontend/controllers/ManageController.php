@@ -76,10 +76,47 @@ class ManageController extends BaseManageController
 
         $model = new ManageRegisterForm();
 
+//        $model->scenario = 'add';
         if ($model->load($data) && $model->add($data)) {
             return json_encode(['status'=>'success', 'data'=>$model->getErrors()]);
         } else {
             return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
         }
+    }
+
+    /**
+     * 编辑.
+     */
+    public function actionEditManage()
+    {
+        $req = Yii::$app->request->method;
+
+        if ($req == 'GET') {
+
+            $this->layout = 'manage';
+            //获取发送过来的id.
+            $id = Yii::$app->request->get('id');
+
+            //查询该管理员的数据.
+            $res = Helper::getService('Manage.Manage')->getManageById($id);
+
+            $model = new ManageRegisterForm();
+
+            return $this->render('edit-manage', ['manage'=>$model,'data'=>$res]);
+
+        } else {
+
+            //获取传递过来的参数.
+            $data = Yii::$app->request->getBodyParams();
+            $model = new ManageRegisterForm();
+
+            if ($model->load($data) && $model->updateData($data)) {
+                return json_encode(['status'=>'success', 'data'=>$model->getErrors()]);
+            } else {
+                return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
+            }
+        }
+
+
     }
 }

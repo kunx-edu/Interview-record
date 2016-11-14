@@ -29,4 +29,11 @@ interface IManageService {
      * @return mixed
      */
     public function add($data);
+
+    /**
+     * 根据id来查询数据.
+     * @param $id
+     * @return mixed
+     */
+    public function getManageById($id);
 }

@@ -1,5 +1,6 @@
 $(function(){
     $('#button').on('click', function(){
+        $('.tips').html('');
         $.post('?r=manage/add-manage', $('form').serialize(), function(data){
             console.debug(data);
             if (data.status == 'success') {

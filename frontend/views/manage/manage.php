@@ -21,7 +21,7 @@ use yii\helpers\Html;
                 echo '<td>'.$v['id'].'</td>';
                 echo '<td>'.$v['username'].'</td>';
                 echo '<td>'.$v['mobile'].'</td>';
-                echo '<td><div class="button-group"><a class="button border-main" href="?r=manage/edit-manage"><span class="icon-edit"></span> 修改</a></div></td>';
+                echo '<td><div class="button-group"><a class="button border-main" href="?r=manage/edit-manage&id='.$v['id'].'"><span class="icon-edit"></span> 修改</a></div></td>';
                 echo '</tr>';
             }
         ?>
