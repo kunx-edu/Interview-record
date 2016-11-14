@@ -7,7 +7,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
-AppAsset::register($this);
+//AppAsset::register($this);
 \frontend\assets\ManageAsset::register($this);
 ?>
 <!DOCTYPE html>
@@ -31,10 +31,11 @@ AppAsset::register($this);
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
     <h2><span class="icon-user"></span>基本设置</h2>
     <ul style="display:block">
-        <li><a href="info.html" target="right"><span class="icon-caret-right"></span>添加管理员</a></li>
-        <li><a href="?r=manage/black-list" target="right"><span class="icon-caret-right"></span>添加黑名单</a></li>
-        <li><a href="?r=manage/train" target="right"><span class="icon-caret-right"></span>添加培训公司</a></li>
+        <li><a href="?r=manage/manage" target="right"><span class="icon-caret-right"></span>管理员</a></li>
+        <li><a href="?r=manage/black-list" target="right"><span class="icon-caret-right"></span>黑名单</a></li>
+        <li><a href="?r=manage/train" target="right"><span class="icon-caret-right"></span>培训公司</a></li>
         <li><a href="info.html" target="right"><span class="icon-caret-right"></span>审核</a></li>
+        <li><a href="info.html" target="right"><span class="icon-caret-right"></span>班级管理</a></li>
     </ul>
 </div>
 <script type="text/javascript">

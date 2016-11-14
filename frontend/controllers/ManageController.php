@@ -6,6 +6,8 @@ use common\core\base\Controller;
 use common\helper\Helper;
 use frontend\core\base\BaseManageController;
 use frontend\models\Blacklist;
+use frontend\models\Manage;
+use frontend\models\ManageRegisterForm;
 use frontend\models\Train;
 use Yii;
 
@@ -45,4 +47,39 @@ class ManageController extends BaseManageController
         return $this->render('train-index', ['keyword'=>$keyword, 'arr'=>$res]);
     }
 
+    public function actionManage()
+    {
+        $this->layout = 'manage';
+
+        //显示管理员列表.
+        $arr = Helper::getService('Manage.Manage')->getManageAll();
+
+        return $this->render('manage', ['arr'=>$arr]);
+    }
+
+    /**
+     * .
+     * @return string
+     */
+    public function actionAdd()
+    {
+        //接收传递过来的id
+        $this->layout = 'manage';
+        $id = Yii::$app->request->get('id');
+        $manage = new ManageRegisterForm();
+        return $this->render('add-manage', ['manage'=>$manage]);
+    }
+
+    public function actionAddManage()
+    {
+        $data = Yii::$app->request->getBodyParams();
+
+        $model = new ManageRegisterForm();
+
+        if ($model->load($data) && $model->add($data)) {
+            return json_encode(['status'=>'success', 'data'=>$model->getErrors()]);
+        } else {
+            return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
+        }
+    }
 }

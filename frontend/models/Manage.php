@@ -11,12 +11,14 @@ use Yii;
  * @property integer $id
  * @property string $username
  * @property string $password
+ * @property string $mobile
  */
 class Manage extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
+    public $rePassword;
     public static function tableName()
     {
         return 'manage';
@@ -69,4 +71,5 @@ class Manage extends \yii\db\ActiveRecord
           return false;
         }
     }
+
 }

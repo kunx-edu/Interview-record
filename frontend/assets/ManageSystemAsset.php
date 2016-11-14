@@ -7,14 +7,15 @@ use yii\web\AssetBundle;
 /**
  * Main frontend application asset bundle.
  */
-class ManageAsset extends AppAsset
+class ManageSystemAsset extends AppAsset
 {
     public $css = [
-        'css/pintuer.css',
-        'css/admin.css',
+        'css/add-manage.css',
     ];
-//
     public $js = [
-        'js/pintuer.js',
+        'js/add-manage.js',
+    ];
+    public $depends = [
+
     ];
 }

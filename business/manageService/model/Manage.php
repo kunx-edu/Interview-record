@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $username
  * @property string $password
+ * @property string $mobile
  */
 class Manage extends \yii\db\ActiveRecord
 {
@@ -41,6 +42,7 @@ class Manage extends \yii\db\ActiveRecord
             'id' => 'ID',
             'username' => 'Username',
             'password' => 'Password',
+            'mobile' => 'Mobile',
         ];
     }
 }
