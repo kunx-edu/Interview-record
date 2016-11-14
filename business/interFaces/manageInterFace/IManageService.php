@@ -36,4 +36,11 @@ interface IManageService {
      * @return mixed
      */
     public function getManageById($id);
+
+    /**
+     * 修改.
+     * @param $data
+     * @return mixed
+     */
+    public function update($data);
 }

@@ -88,4 +88,21 @@ class ManageService extends BaseService implements IManageService
             return false;
         }
     }
+
+    /**
+     * 修改.
+     * @param $data
+     * @return mixed
+     */
+    public function update($data)
+    {
+        try{
+            $model = Manage::find()->where(['id'=>$data['id']])->one();
+            $model->setAttributes($data);
+            return $model->save();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

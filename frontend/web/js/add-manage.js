@@ -1,7 +1,9 @@
 $(function(){
     $('#button').on('click', function(){
         $('.tips').html('');
-        $.post('?r=manage/add-manage', $('form').serialize(), function(data){
+        //获取表单的action.
+        var action = $('form').prop('action');
+        $.post(action, $('form').serialize(), function(data){
             console.debug(data);
             if (data.status == 'success') {
                 layer.msg('添加成功')

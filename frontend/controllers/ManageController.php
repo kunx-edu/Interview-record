@@ -76,7 +76,7 @@ class ManageController extends BaseManageController
 
         $model = new ManageRegisterForm();
 
-//        $model->scenario = 'add';
+        $model->scenario = 'add';
         if ($model->load($data) && $model->add($data)) {
             return json_encode(['status'=>'success', 'data'=>$model->getErrors()]);
         } else {

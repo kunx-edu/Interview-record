@@ -8,8 +8,7 @@ use yii\helpers\Html;
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加管理员</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="">
-            <?= Html::beginForm('?r=manage/add-manage','post'); ?>
+            <?= Html::beginForm('?r=manage/add-manage','post', ['class'=>'form-x']); ?>
             <div class="form-group">
                 <div class="label">
                     <label>标题：</label>

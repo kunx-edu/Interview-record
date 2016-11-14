@@ -40,7 +40,7 @@ class ManageRegisterForm extends \yii\db\ActiveRecord
             ['username', 'required', 'message'=>'用户名不能为空'],
             ['password', 'required', 'message'=>'密码不能为空'],
             ['rePassword', 'required', 'message'=>'重复密码不能为空'],
-            ['username', 'CheckUsername'],
+            ['username', 'CheckUsername', 'on'=>"add"],
             ['mobile', 'required', 'message'=>'手机不能为空'],
             ['rePassword','compare','compareAttribute'=>'password','message'=>'两次密码不一致'],
         ];
@@ -81,7 +81,7 @@ class ManageRegisterForm extends \yii\db\ActiveRecord
     {
         if ($this->validate()) {
 
-            $res = Helper::getService('Manage.Manage')->add($data['ManageRegisterForm']);
+            $res = Helper::getService('Manage.Manage')->update($data['ManageRegisterForm']);
 
             if (!$res) {
                 $this->add('username', '添加失败');
