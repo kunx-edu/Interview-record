@@ -20,4 +20,11 @@ interface IBlacklistService {
      */
     public function getBlack($name);
 
+    /**
+     * 根据id删除黑名单公司.
+     * @param $id
+     * @return mixed
+     */
+    public function del($id);
+
 }

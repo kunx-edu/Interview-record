@@ -66,4 +66,21 @@ class BlacklistService extends BaseService implements IBlacklistService
             return false;
         }
     }
+
+    /**
+     * 根据id删除黑名单公司.
+     * @param $id
+     * @return mixed
+     */
+    public function del($id)
+    {
+        try{
+            $model = Blacklist::find()->where(['id'=>$id])->one();
+            $model->is_delete = 1;
+            return $model->save();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

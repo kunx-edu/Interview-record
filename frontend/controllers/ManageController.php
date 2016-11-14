@@ -168,6 +168,42 @@ class ManageController extends BaseManageController
         } else {
             return json_encode(['status'=>'error']);
         }
+    }
 
+    public function actionDelBlackList()
+    {
+        //获取发送过来id.
+        $id = Yii::$app->request->get('id');
+
+        $res = Helper::getService('blacklist.blacklist')->del($id);
+
+        if ($res) {
+            return json_encode(['status'=>'success']);
+        } else {
+            return json_encode(['status'=>'error']);
+        }
+    }
+
+    public function actionAddBlackList()
+    {
+        $method = Yii::$app->request->method;
+
+        if ($method == 'GET') {
+            $this->layout = 'manage';
+            $model = new Blacklist();
+            return $this->render('add-black-list', ['model'=>$model]);
+        } else {
+
+            //接收发送过来的数据.
+            $data = Yii::$app->request->getBodyParams();
+
+            $model = new Blacklist();
+
+            if ($model->load($data) && $model->add($data)) {
+                return json_encode(['status'=>'success','data'=>$model->getErrors()]);
+            } else {
+                return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
+            }
+        }
     }
 }
