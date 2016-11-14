@@ -6,5 +6,6 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'defaultRoute' => 'index',
 
 ];

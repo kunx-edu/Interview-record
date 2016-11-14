@@ -22,7 +22,7 @@ class Helper {
      */
     public static function redirect($url)
     {
-        header("Location:".$url);
+        Header("Location:".$url);
     }
 
     /**

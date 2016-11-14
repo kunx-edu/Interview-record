@@ -19,7 +19,8 @@ class UserFilters extends ActionFilter
         $session = Helper::getSession('student');
 
         if (empty($session)) {
-            return Helper::redirect('?r=login');
+//            return Helper::redirect('?r=login');
+            header("Location:?r=login");
         }
 
         return parent::beforeAction($action);
