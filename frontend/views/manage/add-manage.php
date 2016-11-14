@@ -11,7 +11,7 @@ use yii\helpers\Html;
             <?= Html::beginForm('?r=manage/add-manage','post', ['class'=>'form-x']); ?>
             <div class="form-group">
                 <div class="label">
-                    <label>标题：</label>
+                    <label>用户名：</label>
                 </div>
                 <div class="field">
                     <?= Html::activeInput('text', $manage, 'username', ['class'=>'input w50 add-manage', 'placeholder'=>'用户名']); ?>

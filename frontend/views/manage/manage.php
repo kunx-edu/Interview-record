@@ -10,8 +10,8 @@ use yii\helpers\Html;
     <table class="table table-hover text-center">
         <tbody><tr>
             <th width="10%">ID</th>
-            <th width="20%">图片</th>
-            <th width="15%">名称</th>
+            <th width="20%">用户名</th>
+            <th width="15%">手机号</th>
             <th width="15%">操作</th>
         </tr>
 
