@@ -1,51 +1,43 @@
 <?php
-$this->title = "培训机构";
-use yii\widgets\LinkPager;
+$this->title = "培训公司";
 use yii\helpers\Html;
+\frontend\assets\LayerAsset::register($this);
+\frontend\assets\TrainManageAsset::register($this);
 ?>
-<style>
-    .search-box{
-        background: #f8f8f8;
-        border:1px solid #d8dce5;
-        padding:10px 0px 10px 12px;
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        border-radius:8px;
-        margin-bottom: 20px;
-        min-width: 1145px;
-    }
-</style>
-<div class="search-box">
-    <!--查询条件-->
-    <?= Html::beginForm('?r=manage/train','get', ['class'=>'form-inline']);?>
-    <div class="form-group">
-        <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="form-control ma-right" placeholder="公司名称">
-        <button role="button" id="SeachButton" type="submit"class="btn btn-primary">搜索</button>
-        <a class="btn btn-primary" href="?r=train/add" target="_blank">添加培训机构</a>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder">培训机构</strong></div>
+    <div class="padding border-bottom">
+        <ul class="search" style="padding-left:10px;">
+            <li><button type="button" class="button border-yellow" onclick="window.location.href='?r=manage/add-train'"><span class="icon-plus-square-o"></span> 添加培训机构</button></li>
+            <li>搜索：</li>
+            <li>
+                <?= Html::beginForm('?r=manage/train','get', ['class'=>'form-inline']);?>
+                <input type="text" name="keyword" value="<?= $keyword;?>" size="18" class="input" style="width:250px;height: 42px; line-height:17px;display:inline-block">
+                <button class="button border-main icon-search" type="submit"> 搜索</button>
+                <?= Html::endForm(); ?>
+            </li>
+        </ul>
     </div>
-    <?= Html::endForm(); ?>
-</div>
-<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>公司名称</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-        if (!empty($arr)) {
-            foreach ($arr as $K => $v) {
-                echo '<tr>';
-                echo '<td>'.$v['id'].'</td>';
-                echo '<td>'.$v['train_name'].'</td>';
-                echo '</tr>';
-            }
-        } else {
-            echo '<tr><td colspan="2" align="center">暂时没有数据</td></tr>';
-        }
-    ?>
-    </tbody>
+    <table class="table table-hover text-center">
+        <tbody><tr>
+            <th width="10%">ID</th>
+            <th width="20%">公司名称</th>
+            <th width="15%">操作</th>
+        </tr>
 
-</table>
-<div class="container" style="text-align: center;"><?php //LinkPager::widget(['pagination' => $pages]); ?></div>
+        <?php
+    if (!empty($arr)) {
+        foreach ($arr as $K => $v) {
+            echo '<tr>';
+            echo '<td>'.$v['id'].'</td>';
+            echo '<td>'.$v['train_name'].'</td>';
+            echo '<td><div class="button-group"><button class="button border-main del" href="?r=manage/del-train&id='.$v['id'].'"><span class="icon-edit"></span>删除</button></div></td>';
+            echo '</tr>';
+        }
+    } else {
+        echo '<tr><td colspan="3" align="center">暂时没有数据</td></tr>';
+    }
+    ?>
+        </tbody>
+    </table>
+</div>

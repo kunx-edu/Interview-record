@@ -59,10 +59,30 @@ class TrainService extends BaseService implements ITrainService{
         try{
             $model = new Train();
             $data['Train']['is_delete'] = 0;
-            $data['Train']['is_validate'] = 0;
+
+            if (empty($data['Train']['is_validate'])) {
+                $data['Train']['is_validate'] = 0;
+            }
             $model->setAttributes($data['Train']);
             $model->save();
             return $model->getPrimaryKey();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 根据id来删除招聘公司.
+     * @param $id
+     * @return mixed
+     */
+    public function del($id)
+    {
+        try{
+            $train = Train::find()->where(['id'=>$id])->one();
+            $train->is_delete = 1;
+            return $train->save();
         }catch (Exception $e){
             Yii::error($e->getMessage());
             return false;

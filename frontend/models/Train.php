@@ -29,6 +29,7 @@ class Train extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['is_delete', 'is_validate'], 'integer'],
             ['train_name', 'required', 'message'=>'培训机构名称不能为空'],
             ['train_name', 'CheckTrainName'],
         ];

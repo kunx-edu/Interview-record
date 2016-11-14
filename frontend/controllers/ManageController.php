@@ -36,17 +36,6 @@ class ManageController extends BaseManageController
 
         return $this->render('black-list-index', ['keyword'=>$keyword, 'arr'=>$arr]);
     }
-    public function actionTrain()
-    {
-        $this->layout = 'manage';
-        //接收传递过来的关键字.
-        $keyword = Yii::$app->request->get('keyword');
-
-        //查询所有的培训机构.
-        $res = Helper::getService('Train.Train')->getTrainAll($keyword);
-
-        return $this->render('train-index', ['keyword'=>$keyword, 'arr'=>$res]);
-    }
 
     public function actionManage()
     {
@@ -198,6 +187,56 @@ class ManageController extends BaseManageController
             $data = Yii::$app->request->getBodyParams();
 
             $model = new Blacklist();
+
+            if ($model->load($data) && $model->add($data)) {
+                return json_encode(['status'=>'success','data'=>$model->getErrors()]);
+            } else {
+                return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
+            }
+        }
+    }
+
+    public function actionTrain()
+    {
+        $this->layout = 'manage';
+        //接收传递过来的关键字.
+        $keyword = Yii::$app->request->get('keyword');
+
+        //查询所有的培训机构.
+        $res = Helper::getService('Train.Train')->getTrainAll($keyword);
+
+        return $this->render('train-index', ['keyword'=>$keyword, 'arr'=>$res]);
+    }
+
+    public function actionDelTrain()
+    {
+        //获取发送过来id.
+        $id = Yii::$app->request->get('id');
+
+        $res = Helper::getService('Train.Train')->del($id);
+
+        if ($res) {
+            return json_encode(['status'=>'success']);
+        } else {
+            return json_encode(['status'=>'error']);
+        }
+    }
+
+    public function actionAddTrain()
+    {
+        $method = Yii::$app->request->method;
+
+        if ($method == 'GET') {
+            $this->layout = 'manage';
+            $model = new Train();
+            return $this->render('add-train', ['model'=>$model]);
+        } else {
+
+            //接收发送过来的数据.
+            $data = Yii::$app->request->getBodyParams();
+            $data['Train']['is_validate'] = 1;
+
+            $model = new Train();
 
             if ($model->load($data) && $model->add($data)) {
                 return json_encode(['status'=>'success','data'=>$model->getErrors()]);

@@ -23,4 +23,11 @@ interface ITrainService {
      * @return mixed
      */
     public function add($data);
+
+    /**
+     * 根据id来删除招聘公司.
+     * @param $id
+     * @return mixed
+     */
+    public function del($id);
 }
