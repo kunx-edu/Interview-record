@@ -10,6 +10,7 @@ $(function(){
             } else {
                 $.each(data.data, function(k, v){
                     $('.'+ k+'_err').html(v)
+                    $('.'+ k+'_err').css('color','red');
                 })
             }
         },'json')
