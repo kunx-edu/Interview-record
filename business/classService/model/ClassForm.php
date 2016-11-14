@@ -14,8 +14,6 @@ use Yii;
  */
 class ClassForm extends \yii\db\ActiveRecord
 {
-    public $id;
-    public $class_name;
     /**
      * @inheritdoc
      */

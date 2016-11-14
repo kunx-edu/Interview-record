@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <label for="interview_time">面试时间</label>
-            <?=Html::activeInput('text', $model, 'interview_time',['class'=>'form-control', 'placeholder'=>'面试时间'])?>
+            <?=Html::activeInput('date', $model, 'interview_time',['class'=>'form-control', 'placeholder'=>'面试时间'])?>
             <div class="help-block hide" id="interview_time_err"></div>
         </div>
 

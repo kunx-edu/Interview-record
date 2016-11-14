@@ -6,6 +6,7 @@ use common\core\base\Controller;
 use common\helper\Helper;
 use frontend\core\base\BaseManageController;
 use frontend\models\Blacklist;
+use frontend\models\ClassForm;
 use frontend\models\Manage;
 use frontend\models\ManageRegisterForm;
 use frontend\models\Train;
@@ -116,7 +117,57 @@ class ManageController extends BaseManageController
                 return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
             }
         }
+    }
 
+    public function actionClass()
+    {
+        $this->layout = 'manage';
+
+        //查询所有的班级.
+        $arr = Helper::getService('Class.Class')->getClassAll();
+        return $this->render('class', ['arr'=>$arr]);
+    }
+
+    /**
+     * 添加班级.
+     */
+    public function actionAddClass()
+    {
+        $method = Yii::$app->request->method;
+
+        if ($method == 'GET') {
+            $this->layout = 'manage';
+            $class = new ClassForm();
+            $subjectArr = ['java','php','ui','web'];
+            return $this->render('add-class', ['class'=>$class, 'subjectArr'=>$subjectArr]);
+        } else {
+            //获取发送过来的数据.
+            $data = Yii::$app->request->getBodyParams();
+            $model = new ClassForm();
+
+            if ($model->load($data) && $model->add($data)) {
+                return json_encode(['status'=>'success', 'data'=>$model->getErrors(), 'url'=>'?r=manage/class']);
+            } else {
+                return json_encode(['status'=>'error', 'data'=>$model->getErrors()]);
+            }
+        }
+    }
+
+    /**
+     * 删除.
+     */
+    public function actionDelClass()
+    {
+        //获取发送过来id.
+        $id = Yii::$app->request->get('id');
+
+        $res = Helper::getService('Class.Class')->del($id);
+
+        if ($res) {
+            return json_encode(['status'=>'success']);
+        } else {
+            return json_encode(['status'=>'error']);
+        }
 
     }
 }

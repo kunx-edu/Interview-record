@@ -2,8 +2,8 @@
 
 namespace frontend\models;
 
+use common\helper\Helper;
 use Yii;
-use yii\base\Model;
 
 /**
  * This is the model class for table "class".
@@ -13,7 +13,7 @@ use yii\base\Model;
  * @property string $subject
  * @property integer $is_delete
  */
-class ClassForm extends Model
+class ClassForm extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -29,8 +29,8 @@ class ClassForm extends Model
     public function rules()
     {
         return [
-            [['is_delete'], 'integer'],
-            [['class_name', 'subject'], 'string', 'max' => 20],
+            ['class_name', 'required', 'message'=>'学科不能为空'],
+            ['subject', 'required', 'message'=>'学科不能为空'],
         ];
     }
 
@@ -47,5 +47,21 @@ class ClassForm extends Model
         ];
     }
 
+    public function add($data)
+    {
+        if ($this->validate()) {
 
+            $res = Helper::getService('Class.Class')->add($data['ClassForm']);
+
+            if (!$res) {
+                $this->addError('class_name', '添加失败');
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+            return false;
+        }
+    }
 }
