@@ -185,4 +185,75 @@ class Interview extends \yii\db\ActiveRecord
         return $res;
     }
 
+    /**
+     * 查询学科下面所有的面试信息.
+     * @param $subject
+     */
+    public function getListBySubject($subject, $keyword, $pageNow)
+    {
+        $sql = "SELECT
+                    i.id,
+                    i.company_name,
+                    i.company_address,
+                    i.company_type,
+                    i.salary,
+                    i.interview_time,
+                    s.username,
+                (
+                        SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
+                ) AS count,
+                 (
+                        SELECT SUM(`grade`) / count FROM `interview` WHERE `company_name` = i.company_name
+                 ) AS grade
+                FROM
+                    `interview` AS i
+                LEFT JOIN `student` AS s ON i.student_id = s.id
+                LEFT JOIN `class` AS c ON s.class_id = c.id
+                WHERE c.`subject` = '{$subject}'";
+
+        if (!empty($keyword)) {
+            $sql .= " AND i.company_name LIKE '%{$keyword}%'";
+        }
+        $sql .= " LIMIT :pageNow, ".Yii::$app->params['pageSize'];
+
+        $res = Yii::$app->db->createCommand($sql)->bindValue(':pageNow', $pageNow)->queryAll();
+        return $res;
+
+    }
+
+    /**
+     * 查询某个学科的总条数.
+     * @param $ubject
+     */
+    public function getInterviewCountBySubject($subject, $pageNow)
+    {
+
+        $sql = "SELECT
+                    i.id,
+                    i.company_name,
+                    i.company_address,
+                    i.company_type,
+                    i.salary,
+                    i.interview_time,
+                    s.username,
+                (
+                        SELECT COUNT(`id`) FROM `interview` WHERE `company_name` = i.company_name
+                ) AS count,
+                 (
+                        SELECT SUM(`grade`) / count FROM `interview` WHERE `company_name` = i.company_name
+                 ) AS grade
+                FROM
+                    `interview` AS i
+                LEFT JOIN `student` AS s ON i.student_id = s.id
+                LEFT JOIN `class` AS c ON s.class_id = c.id
+                WHERE c.`subject` = '{$subject}'";
+
+        if (!empty($keyword)) {
+            $sql .= " AND i.company_name LIKE '%{$keyword}%'";
+        }
+
+        $res = Yii::$app->db->createCommand($sql)->queryAll();
+        return $res;
+    }
+
 }

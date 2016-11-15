@@ -32,4 +32,18 @@ interface IInterviewService {
      * @return mixed
      */
     public function getInterviewById($id);
+
+    /**
+     * 根据学科来查询面试信息.
+     * @param $subject
+     * @return mixed
+     */
+    public function getListBySubject($subject, $keyword, $pageNow);
+
+    /**
+     * 获取学科面试的总条数.
+     * @param $subject
+     * @return mixed
+     */
+    public function getInterviewCountBySubject($subject, $keyword);
 }

@@ -147,4 +147,38 @@ class InterviewService  extends BaseService implements IInterviewService
             return false;
         }
     }
+
+    /**
+     * 根据学科来查询面试信息.
+     * @param $subject
+     * @return mixed
+     */
+    public function getListBySubject($subject, $keyword, $pageNow)
+    {
+        try{
+            $interviewArr = new Interview();
+            $arr = $interviewArr->getListBySubject($subject, $keyword, $pageNow);
+            return $arr;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 获取学科面试的总条数.
+     * @param $subject
+     * @return mixed
+     */
+    public function getInterviewCountBySubject($subject, $keyword)
+    {
+        try{
+            $interview = new Interview();
+            $res = $interview->getInterviewCountBySubject($subject, $keyword);
+            return $res;
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

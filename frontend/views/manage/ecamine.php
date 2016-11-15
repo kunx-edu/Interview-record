@@ -29,7 +29,7 @@ use yii\helpers\Html;
                 echo '</tr>';
             }
         } else {
-            echo '<tr><td colspan="3" align="center">暂时没有数据</td></tr>';
+            echo '<tr><td colspan="4" align="center">暂时没有数据</td></tr>';
         }
         ?>
         </tbody>
