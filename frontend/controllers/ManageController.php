@@ -245,4 +245,67 @@ class ManageController extends BaseManageController
             }
         }
     }
+
+    public function actionExamine()
+    {
+        $this->layout = 'manage';
+        //查询所有需要审核的内容.
+        $arr = Helper::getService('blacklist.blacklist')->getNotValidateAll();
+
+        return $this->render('ecamine', ['arr'=>$arr]);
+    }
+
+    //审核通过.
+    public function actionEcaminePass()
+    {
+        //获取发送过来的参数.
+        $data  = Yii::$app->request->get();
+
+        //区分.
+        if ($data['type'] == 'blacklist') {
+
+            $res = Helper::getService('blacklist.blacklist')->excamine($data['id'], 1);
+            if ($res) {
+                return json_encode(['status'=>'success']);
+            } else {
+                return json_encode(['status'=>'error']);
+            }
+
+        } else if ($data['type'] == 'train') {
+            $res = Helper::getService('Train.Train')->excamine($data['id'], 1);
+            if ($res) {
+                return json_encode(['status'=>'success']);
+            } else {
+                return json_encode(['status'=>'error']);
+            }
+        }
+    }
+
+    /**
+     * 审核不通过.
+     */
+    public function actionEcamineNotPass()
+    {
+        //获取发送过来的参数.
+        $data  = Yii::$app->request->get();
+
+        //区分.
+        if ($data['type'] == 'blacklist') {
+
+            $res = Helper::getService('blacklist.blacklist')->excamine($data['id'], 2);
+            if ($res) {
+                return json_encode(['status'=>'success']);
+            } else {
+                return json_encode(['status'=>'error']);
+            }
+
+        } else if ($data['type'] == 'train') {
+            $res = Helper::getService('Train.Train')->excamine($data['id'] ,2);
+            if ($res) {
+                return json_encode(['status'=>'success']);
+            } else {
+                return json_encode(['status'=>'error']);
+            }
+        }
+    }
 }

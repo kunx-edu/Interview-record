@@ -30,4 +30,12 @@ interface ITrainService {
      * @return mixed
      */
     public function del($id);
+
+    /**
+     * 审核是否通过.
+     * @param $id
+     * @param $status
+     * @return mixed
+     */
+    public function excamine($id, $status);
 }

@@ -88,4 +88,22 @@ class TrainService extends BaseService implements ITrainService{
             return false;
         }
     }
+
+    /**
+     * 审核是否通过.
+     * @param $id
+     * @param $status
+     * @return mixed
+     */
+    public function excamine($id, $status)
+    {
+        try{
+            $train = Train::find()->where(['id'=>$id])->one();
+            $train->is_validate = $status;
+            return $train->save();
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }
