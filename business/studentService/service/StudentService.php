@@ -91,4 +91,19 @@ class StudentService extends BaseService implements IStudentService
     {
         return Student::findOne(['email'=>$email]);
     }
+
+    /**
+     * 导入数据.
+     * @param $data
+     * @return mixed
+     */
+    public function import($data)
+    {
+        try{
+
+        }catch (Exception $e){
+            Yii::error($e->getMessage());
+            return false;
+        }
+    }
 }

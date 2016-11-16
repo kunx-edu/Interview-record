@@ -26,4 +26,11 @@ interface IStudentService
      * @return mixed
      */
     public function getStudentByEmail($email);
+
+    /**
+     * 导入数据.
+     * @param $data
+     * @return mixed
+     */
+    public function import($data);
 }

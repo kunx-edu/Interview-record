@@ -36,6 +36,7 @@ use common\widgets\Alert;
         <li><a href="?r=manage/train"><span class="icon-caret-right"></span>培训公司</a></li>
         <li><a href="?r=manage/examine"><span class="icon-caret-right"></span>审核</a></li>
         <li><a href="?r=manage/class"><span class="icon-caret-right"></span>班级管理</a></li>
+        <li><a href="?r=manage/import"><span class="icon-caret-right"></span>导入学生</a></li>
     </ul>
 </div>
 <script type="text/javascript">

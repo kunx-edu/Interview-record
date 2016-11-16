@@ -32,7 +32,7 @@ class IndexController extends Controller
         $keyword = Yii::$app->request->get('keyword');
 
         //获取当前第几页.
-        $pageNow = Yii::$app->request->get('pageNow');
+        $pageNow = Yii::$app->request->get('page');
         if (empty($pageNow)) {
             $pageNow = 1;
         }
@@ -49,6 +49,7 @@ class IndexController extends Controller
             'arr'=>$data,
             'keyword'=>$keyword,
             'pages'=>$pages,
+            'subject'=>$subject
         ]);
     }
 }

@@ -11,7 +11,7 @@ use frontend\models\Manage;
 use frontend\models\ManageRegisterForm;
 use frontend\models\Train;
 use Yii;
-
+use common\helper\UploadFactoryHelper;
 
 /**
  * 继承了frontend下面的基础控制器.
@@ -306,6 +306,77 @@ class ManageController extends BaseManageController
             } else {
                 return json_encode(['status'=>'error']);
             }
+        }
+    }
+
+    /**
+     * 导入学生.
+     */
+    public function actionImport()
+    {
+        $method = Yii::$app->request->method;
+
+        if ($method == 'GET') {
+
+            $this->layout = 'manage';
+
+            return $this->render('import');
+        } else if($method == 'POST') {
+
+            require "../../vendor/PHPExcel/PHPExcel.php";
+
+            $filePath = "C:/Users/office/Desktop/student.xlsx";
+
+            $phpexcel = new \PHPExcel;
+            $excelReader = \PHPExcel_IOFactory::createReader('Excel2007');
+            $phpexcel = $excelReader->load($filePath)->getSheet(0);//载入文件并获取第一个sheet
+
+            $total_line = $phpexcel->getHighestRow();
+            $total_column = $phpexcel->getHighestColumn();
+
+            for ($row = 2; $row <= $total_line; $row++) {
+                $data = array();
+                for ($column = 'A'; $column <= $total_column; $column++) {
+                    $data[] = trim($phpexcel->getCell($column.$row) -> getValue());
+                }
+            }
+
+            echo '<pre>';
+            var_dump($data);
+        }
+    }
+
+    public function actionImportData()
+    {
+        //获取发送过来的文件.
+        $upload = UploadFactoryHelper::Factory();
+        $arr = $upload->uploadOne('student', ['.xlsx','xls']);
+        if ($arr['status']) {
+
+            require "../../vendor/PHPExcel/PHPExcel.php";
+
+            $filePath = "C:/Users/office/Desktop/student.xlsx";
+
+            $phpexcel = new \PHPExcel;
+            $excelReader = \PHPExcel_IOFactory::createReader('Excel2007');
+            $phpexcel = $excelReader->load($filePath)->getSheet(0);//载入文件并获取第一个sheet
+
+            $total_line = $phpexcel->getHighestRow();
+            $total_column = $phpexcel->getHighestColumn();
+
+            for ($row = 2; $row <= $total_line; $row++) {
+                $data = array();
+                for ($column = 'A'; $column <= $total_column; $column++) {
+                    $data[] = trim($phpexcel->getCell($column.$row) -> getValue());
+                }
+            }
+
+            //记录到数据库.
+            Helper::getService('student.student')->import($data);
+
+            return json_encode(['status'=>'success','url'=>Yii::$app->params['upload_message']['visit_url'].$arr['url']]);
+        } else {
+            return json_encode(['status'=>'error', 'message'=>$arr['message']]);
         }
     }
 }

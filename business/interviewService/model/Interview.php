@@ -212,11 +212,11 @@ class Interview extends \yii\db\ActiveRecord
                 WHERE c.`subject` = '{$subject}'";
 
         if (!empty($keyword)) {
-            $sql .= " AND i.company_name LIKE '%{$keyword}%'";
+            $sql .= ' AND i.company_name LIKE "%{$keyword}%"';
         }
         $sql .= " LIMIT :pageNow, ".Yii::$app->params['pageSize'];
 
-        $res = Yii::$app->db->createCommand($sql)->bindValue(':pageNow', $pageNow)->queryAll();
+        $res = Yii::$app->db->createCommand($sql)->bindValue(':pageNow', ($pageNow - 1) * Yii::$app->params['pageSize'])->queryAll();
         return $res;
 
     }
